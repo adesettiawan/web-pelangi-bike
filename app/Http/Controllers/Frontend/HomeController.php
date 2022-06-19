@@ -9,9 +9,9 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $data['title'] = 'Website Pelangi Bike';
-        $data['intro'] = 'Website Pelangi Bike';
-        $data['type'] = 'Website Pelangi Bike';
+        $data['title'] = 'Pelangi Bike';
+        $data['intro'] = 'Pelangi Bike';
+        $data['type'] = 'Pelangi Bike';
         $data['url'] = URL::current();
 
         return view('frontend.beranda.index', compact('data'));
