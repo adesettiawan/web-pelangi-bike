@@ -37,7 +37,7 @@
 <body>
 
     <!-- Start Header Area -->
-    @include('frontend.layouts.frontend.header')
+    @include('frontend.layouts.header')
     <!-- End Header Area -->
 
 
@@ -47,7 +47,7 @@
 
 
     <!-- start footer Area -->
-    @include('frontend.layouts.frontend.footer')
+    @include('frontend.layouts.footer')
     <!-- End footer Area -->
 
     <script src="{{ url('frontend-assets/js/vendor/jquery-2.2.4.min.js') }}"></script>
