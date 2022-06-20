@@ -74,13 +74,13 @@ $(document).ready(function () {
     ==================================*/
     $(".active-product-area").owlCarousel({
         items: 1,
-        autoplay: true,
+        autoplay: false,
         autoplayTimeout: 10000,
         loop: true,
         nav: true,
         navText: [
-            // "<img src='frontend-assets/img/product/prev.png'>",
-            // "<img src='frontend-assets/img/product/next.png'>",
+            "<img src='frontend-assets/img/product/prev.png'>",
+            "<img src='frontend-assets/img/product/next.png'>",
         ],
         dots: false,
     });
