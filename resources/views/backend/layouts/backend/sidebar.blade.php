@@ -16,7 +16,7 @@
             </a>
             <div class="collapse" id="master-product">
                 <ul class="nav flex-column sub-menu">
-                    {{-- <li class="nav-item"><a class="nav-link" href="{{ route('stock.product') }}">Stock Produk</a> --}}
+                    <li class="nav-item"><a class="nav-link" href="{{ route('produk') }}">Stock Produk</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="pages/ui-features/dropdowns.html">Pelanggan</a>
                     </li>

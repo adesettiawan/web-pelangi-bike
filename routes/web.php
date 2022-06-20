@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\Master\ProdukController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +22,18 @@ use Illuminate\Support\Facades\URL;
 
 Route::get('/', [HomeController::class, 'index'])->name('beranda');
 
-Route::get('dashboard', function () {
-    $data['title'] = 'Pelangi Bike';
-    $data['intro'] = 'Pelangi Bike';
-    $data['type'] = 'Pelangi Bike';
-    $data['url'] = URL::current();
-    return view('backend.beranda.dashboard',compact('data'));
-})->name('dashboard');
+// ----------------------------------------------------------------------
+// Backend
+// ----------------------------------------------------------------------
+
+Route::controller(DashboardController::class)->group(function () {
+    Route::prefix('dashboard')->group(function () {
+        Route::get('/', 'index')->name('dashboard');
+    });
+});
+
+Route::controller(ProdukController::class)->group(function () {
+    Route::prefix('produk')->group(function () {
+        Route::get('/', 'index')->name('produk');
+    });
+});

@@ -1,13 +1,15 @@
 @extends('backend.layouts.backend.dashboard')
-@section('main-content')
+@section('header')
     <div class="d-xl-flex justify-content-between align-items-start">
-        <h2 class="text-dark font-weight-bold mb-2"> Stok Produk </h2>
+        <h2 class="text-dark font-weight-bold mb-2">Produk</h2>
         <div class="d-sm-flex justify-content-xl-between align-items-center mb-2">
         </div>
     </div>
+@stop
+@section('main-content')
     <div class="card-body">
         <div class="table-responsive">
-            <a href="{{route('create.stock.product')}}" class="btn btn-primary mb-4">Tambah</a>
+            {{-- <a href="{{route('create.stock.product')}}" class="btn btn-primary mb-4">Tambah</a> --}}
             <table class=" table display cell-border" id="dataTable" width="100%" cellspacing="0"data-page-length="25"
                 data-order="[[ 1, &quot;asc&quot; ]]">
                 <thead>
@@ -41,4 +43,4 @@
             </table>
         </div>
     </div>
-@endsection
+@stop

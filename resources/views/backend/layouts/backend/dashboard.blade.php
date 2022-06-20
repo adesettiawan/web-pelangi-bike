@@ -25,6 +25,8 @@
             @include('backend.layouts.backend.sidebar')
             <div class="main-panel">
                 <div class="content-wrapper">
+                    @yield('header')
+
                     @yield('main-content')
                 </div>
                 @include('backend.layouts.backend.footer')
