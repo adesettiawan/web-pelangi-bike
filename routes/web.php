@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,11 @@ use Illuminate\Support\Facades\Route;
 // ----------------------------------------------------------------------
 
 Route::get('/', [HomeController::class, 'index'])->name('beranda');
+
+Route::get('dashboard', function () {
+    $data['title'] = 'Pelangi Bike';
+    $data['intro'] = 'Pelangi Bike';
+    $data['type'] = 'Pelangi Bike';
+    $data['url'] = URL::current();
+    return view('backend.beranda.dashboard',compact('data'));
+})->name('dashboard');
