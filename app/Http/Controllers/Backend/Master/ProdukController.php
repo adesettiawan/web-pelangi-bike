@@ -30,7 +30,12 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        //
+        $data['title'] = 'Pelangi Bike';
+        $data['intro'] = 'Pelangi Bike';
+        $data['type'] = 'Pelangi Bike';
+        $data['url'] = URL::current();
+
+        return view('backend.master.produk.function.create', compact('data'));
     }
 
     /**

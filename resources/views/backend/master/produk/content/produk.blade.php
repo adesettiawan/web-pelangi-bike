@@ -9,7 +9,7 @@
 @section('main-content')
     <div class="card-body">
         <div class="table-responsive">
-            {{-- <a href="{{route('create.stock.product')}}" class="btn btn-primary mb-4">Tambah</a> --}}
+            <a href="{{route('produk.create')}}" class="btn btn-primary mb-4">Tambah</a>
             <table class=" table display cell-border" id="dataTable" width="100%" cellspacing="0"data-page-length="25"
                 data-order="[[ 1, &quot;asc&quot; ]]">
                 <thead>

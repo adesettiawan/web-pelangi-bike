@@ -32,8 +32,6 @@ Route::controller(DashboardController::class)->group(function () {
     });
 });
 
-Route::controller(ProdukController::class)->group(function () {
-    Route::prefix('produk')->group(function () {
-        Route::get('/', 'index')->name('produk');
-    });
-});
+Route::resources([
+    'produk' => ProdukController::class,
+]);

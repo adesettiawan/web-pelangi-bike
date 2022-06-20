@@ -11,12 +11,12 @@
             <a class="nav-link" data-toggle="collapse" href="#master-product" aria-expanded="false"
                 aria-controls="ui-basic">
                 <span class="icon-bg"><i class="mdi mdi-cube menu-icon"></i></span>
-                <span class="menu-title">Master Produk</span>
+                <span class="menu-title">Master</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="master-product">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('produk') }}">Stock Produk</a>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('produk.index') }}">Produk</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="pages/ui-features/dropdowns.html">Pelanggan</a>
                     </li>
