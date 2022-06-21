@@ -54,7 +54,7 @@
     </div>
 </section>
 <!-- End banner Area -->
-
+{{-- 
 <!-- start features Area -->
 <section class="features-area section_gap">
     <div class="container">
@@ -102,10 +102,10 @@
         </div>
     </div>
 </section>
-<!-- end features Area -->
+<!-- end features Area --> --}}
 
 <!-- Start category Area -->
-<section class="category-area">
+<section class="category-area section_gap">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 col-md-12">

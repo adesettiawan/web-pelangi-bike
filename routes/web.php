@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\Master\ProdukController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -25,13 +27,31 @@ Route::get('/', [HomeController::class, 'index'])->name('beranda');
 // ----------------------------------------------------------------------
 // Backend
 // ----------------------------------------------------------------------
+Route::group(['middleware' => 'auth'], function () {
+    Route::controller(DashboardController::class)->group(function () {
+        Route::prefix('dashboard')->group(function () {
+            Route::get('/', 'index')->name('dashboard');
+        });
+    });
 
-Route::controller(DashboardController::class)->group(function () {
-    Route::prefix('dashboard')->group(function () {
-        Route::get('/', 'index')->name('dashboard');
+    Route::resources([
+        'produk' => ProdukController::class,
+    ]);
+});
+
+// ----------------------------------------------------------------------
+// Auth
+// ----------------------------------------------------------------------
+
+Route::controller(LoginController::class)->group(function () {
+    Route::prefix('login')->group(function () {
+        Route::get('/', 'index')->name('login');
+        Route::get('auth', 'authenticate')->name('auth.login');
     });
 });
 
-Route::resources([
-    'produk' => ProdukController::class,
-]);
+Route::controller(LogoutController::class)->group(function () {
+    Route::prefix('logout')->group(function () {
+        Route::get('/', 'index')->name('logout');
+    });
+});
