@@ -14,8 +14,16 @@
     <div class="limiter">
         <div class="container-login100" style="background-image: url({{ asset('backend-assets/images/bg-01.jpg') }});">
             <div class="wrap-login100">
-                <form class="login100-form validate-form" method="GET" action="{{route('auth.login')}}">
+                <form class="login100-form validate-form" method="GET" action="{{ route('auth.login') }}">
                     @csrf
+                    @if (session('error'))
+                        <div class="alert alert-danger border-left-danger alert-dismissible fade show" role="alert">
+                            {{ session('error') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                     <span class="login100-form-logo">
                         <img src="{{ asset('frontend-assets/img/logo3.png') }}" alt="">
                     </span>

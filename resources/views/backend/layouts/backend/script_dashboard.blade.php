@@ -15,7 +15,7 @@
             },
             lengthMenu: [
                 [10, 25, 50, -1],
-                [10, 25, 50, 'All'],
+                [10, 25, 50, 'Semua'],
             ],
         });
         $('#dataTable tbody').on('click', 'tr', function() {
@@ -107,21 +107,14 @@
 </script>
 <script>
     $("#upfile").click(function() {
-        $("#picture").trigger('click');
-    });
-
-    $('#picture').change(function() {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            $('#showpicture').text(e.name); // or you can pass this.files[0];
-        }
+        $("#image").trigger('click');
     });
 </script>
 <script>
-    picture.onchange = evt => {
-  const [file] = picture.files
-  if (file) {
-    prvwimg.src = URL.createObjectURL(file)
-  }
-}
+    image.onchange = evt => {
+        const [file] = image.files
+        if (file) {
+            prvwimg.src = URL.createObjectURL(file)
+        }
+    }
 </script>

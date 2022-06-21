@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Backend\Master;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 
-class ProdukController extends Controller
+class KategoriController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +21,9 @@ class ProdukController extends Controller
         $data['type'] = 'Pelangi Bike';
         $data['url'] = URL::current();
 
-        return view('backend.master.produk.content.produk', compact('data'));
+        $ktg = DB::table('categories')->get();
+
+        return view('backend.master.kategori.content.kategori', compact('data', 'ktg'));
     }
 
     /**
@@ -36,9 +38,7 @@ class ProdukController extends Controller
         $data['type'] = 'Pelangi Bike';
         $data['url'] = URL::current();
 
-        $ktg = DB::table('categories')->get();
-
-        return view('backend.master.produk.function.create', compact('data','ktg'));
+        return view('backend.master.kategori.function.create', compact('data'));
     }
 
     /**
@@ -49,7 +49,12 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        
+        DB::table('categories')->insert([
+            'name' => $request->name,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('kategori.index');
     }
 
     /**

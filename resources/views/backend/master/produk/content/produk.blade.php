@@ -11,13 +11,13 @@
         <div class="table-responsive">
             <a href="{{route('produk.create')}}" class="btn btn-primary mb-4">Tambah</a>
             <table class=" table display cell-border" id="dataTable" width="100%" cellspacing="0"data-page-length="25"
-                data-order="[[ 1, &quot;asc&quot; ]]">
+                data-order="[[ 1, &quot;desc&quot; ]]">
                 <thead>
                     <tr>
                         <th class="text-center">Kode</th>
                         <th class="text-center">Nama</th>
                         <th class="text-center">Harga</th>
-                        <th class="text-center">Tanggal Kadaluwarsa</th>
+                        <th class="text-center">Gambar</th>
                         <th class="text-center">Kategori</th>
                         <th class="text-center">Opsi</th>
                     </tr>

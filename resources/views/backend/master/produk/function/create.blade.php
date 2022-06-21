@@ -12,7 +12,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Tambah Produk</h4>
-                    <form class="forms-sample" method="POST" action="">
+                    <form class="forms-sample" method="POST" action="" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="name">Nama :</label>
@@ -27,28 +27,27 @@
                         </div>
                         <div class="form-group">
                             <label for="category">Kategori :</label>
-                            <select class="form-control">
+                            <select class="form-control" id="category" name="category">
                                 <option class="form-control" readonly>-- Pilih Kategori --</option>
-                                <option class="form-control">1</option>
-                                <option class="form-control">2</option>
-                                <option class="form-control">3</option>
+                                @foreach($ktg as $i)
+                                <option class="form-control" value="{{$i->name}}">{{$i->name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="picture">Gambar</label><br>
+                            <label for="image">Gambar :</label><br>
                             <img id="prvwimg" src="{{ asset('backend-assets/images/default-image.jpg') }}"
-                                alt="your image" class="mb-4" style="max-width:400px;"/>
+                                alt="your image" class="mb-4" style="max-width:300px;" />
                             <div class="input-group col-xs-12">
                                 <input type="file" accept="image/*" class="form-control" style="display:none;"
-                                    id="picture" name ="picture" placeholder="picture">
+                                    id="image" name ="image" placeholder="image">
                                 <span class="input-group-append">
-                                    <button class="btn btn-primary" id="upfile"
-                                        onchange='getFileData(this)'type="button">Upload</button>
+                                    <button class="btn btn-primary" id="upfile" type="button">Upload</button>
                                 </span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="description">Deskripsi</label>
+                            <label for="description">Deskripsi :</label>
                             <textarea class="form-control" id="description" name="description" rows="4"></textarea>
                         </div>
                         <button type="submit" class="btn btn-success mr-2">Simpan</button>

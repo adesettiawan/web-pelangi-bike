@@ -18,7 +18,7 @@
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"><a class="nav-link" href="{{ route('produk.index') }}">Produk</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="pages/ui-features/dropdowns.html">Pelanggan</a>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('kategori.index') }}">Kategori</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="pages/ui-features/typography.html">Karyawan</a>
                     </li>
