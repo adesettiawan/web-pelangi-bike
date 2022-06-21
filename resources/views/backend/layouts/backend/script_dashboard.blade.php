@@ -117,3 +117,11 @@
         }
     });
 </script>
+<script>
+    picture.onchange = evt => {
+  const [file] = picture.files
+  if (file) {
+    prvwimg.src = URL.createObjectURL(file)
+  }
+}
+</script>

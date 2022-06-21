@@ -12,8 +12,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Tambah Produk</h4>
-                    <p class="card-description"> Pelangi Bike Lampung </p>
-                    <form class="forms-sample">
+                    <form class="forms-sample" method="POST" action="">
                         @csrf
                         <div class="form-group">
                             <label for="name">Nama :</label>
@@ -36,14 +35,15 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="picture">Gambar</label>
+                            <label for="picture">Gambar</label><br>
+                            <img id="prvwimg" src="{{ asset('backend-assets/images/default-image.jpg') }}"
+                                alt="your image" class="mb-4" style="max-width:400px;"/>
                             <div class="input-group col-xs-12">
-                                <input type="file" class="form-control" style="display:none;" id="picture" name
-                                    ="picture" placeholder="picture">
-                                <input type="text" class="form-control" id="showpicture" name ="showpicture"
-                                    placeholder="Gambar Produk" readonly>
+                                <input type="file" accept="image/*" class="form-control" style="display:none;"
+                                    id="picture" name ="picture" placeholder="picture">
                                 <span class="input-group-append">
-                                    <button class="btn btn-primary" id="upfile" onchange='getFileData(this)'type="button">Acak</button>
+                                    <button class="btn btn-primary" id="upfile"
+                                        onchange='getFileData(this)'type="button">Upload</button>
                                 </span>
                             </div>
                         </div>
@@ -52,7 +52,6 @@
                             <textarea class="form-control" id="description" name="description" rows="4"></textarea>
                         </div>
                         <button type="submit" class="btn btn-success mr-2">Simpan</button>
-                        <button type="button" class="btn btn-primary mr-2">Tambah</button>
                         <a href="{{ route('produk.index') }}" class="btn btn-danger">Cancel</a>
                     </form>
                 </div>
