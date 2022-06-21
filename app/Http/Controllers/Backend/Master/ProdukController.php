@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use App\Models\product;
+use App\Models\category;
 
 class ProdukController extends Controller
 {
@@ -21,7 +24,10 @@ class ProdukController extends Controller
         $data['type'] = 'Pelangi Bike';
         $data['url'] = URL::current();
 
-        return view('backend.master.produk.content.produk', compact('data'));
+        $prdk = category::join('products', 'categories.id', '=', 'products.category_id')
+        ->get(['products.*', 'categories.name as category_name']);
+
+        return view('backend.master.produk.content.produk', compact('data','prdk'));
     }
 
     /**
@@ -49,7 +55,21 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $prd = new product();
+        $prd->name = $request->name;
+        $prd->price = $request->price;
+        $prd->description = $request->description;
+        $prd->category_id = $request->category;
+        if($request->file('image')) 
+        {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->extension();
+            $filePath = storage_path() . '/app/public/produk';
+            $file->move($filePath, $filename);
+            $prd->image = $filename;
+        }
+        $prd->save();
+        return redirect()->back()->with('success', 'Data berhasil ditambahkan');
     }
 
     /**

@@ -9,9 +9,9 @@
 @section('main-content')
     <div class="card-body">
         <div class="table-responsive">
-            <a href="{{route('produk.create')}}" class="btn btn-primary mb-4">Tambah</a>
+            <a href="{{ route('produk.create') }}" class="btn btn-primary mb-4">Tambah</a>
             <table class=" table display cell-border" id="dataTable" width="100%" cellspacing="0"data-page-length="25"
-                data-order="[[ 1, &quot;desc&quot; ]]">
+                data-order="[[ 1, &quot;asc&quot; ]]">
                 <thead>
                     <tr>
                         <th class="text-center">Kode</th>
@@ -23,22 +23,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="text-center">XN-1111</td>
-                        <td class="text-center">System Architect</td>
-                        <td class="text-center">Edinburgh</td>
-                        <td class="text-center">61</td>
-                        <td class="text-center">2011/04/25</td>
-                        <td class="text-center">$320,800</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">XN-1112</td>
-                        <td class="text-center">Bronice</td>
-                        <td class="text-center">Edinburgh</td>
-                        <td class="text-center">61</td>
-                        <td class="text-center">2011/04/25</td>
-                        <td class="text-center">$320,800</td>
-                    </tr>
+                    @foreach ($prdk as $i)
+                        <tr>
+                            <td class="text-center">{{ $i->id }}</td>
+                            <td class="text-center">{{ $i->name }}</td>
+                            <td class="text-center">{{ $i->price }}</td>
+                            <td class="text-center"><embed src="{{ asset('storage/produk/' . $i->image . '') }}"
+                                    style="max-width:200px;" /></td>
+                            <td class="text-center">{{ $i->category_name }}</td>
+                            <td class="text-center"><a href="" class="btn btn-danger btn-sm">Hapus</a></td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

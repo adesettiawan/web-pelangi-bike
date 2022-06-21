@@ -1,5 +1,13 @@
 @extends('backend.layouts.backend.dashboard')
 @section('header')
+    @if (session('success'))
+        <div class="alert alert-success border-left-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <div class="d-xl-flex justify-content-between align-items-start">
         <h2 class="text-dark font-weight-bold mb-2">Produk</h2>
         <div class="d-sm-flex justify-content-xl-between align-items-center mb-2">
@@ -12,7 +20,8 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Tambah Produk</h4>
-                    <form class="forms-sample" method="POST" action="" enctype="multipart/form-data">
+                    <form class="forms-sample" method="POST" action="{{ route('produk.store') }}"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="name">Nama :</label>
@@ -22,15 +31,15 @@
                         <div class="form-group">
                             <label for="price">Harga :</label>
                             <input type="text" class="form-control" name="price" id="price"
-                                pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency"
+                                pattern="^\Rp\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency"
                                 placeholder="Harga Produk">
                         </div>
                         <div class="form-group">
                             <label for="category">Kategori :</label>
                             <select class="form-control" id="category" name="category">
                                 <option class="form-control" readonly>-- Pilih Kategori --</option>
-                                @foreach($ktg as $i)
-                                <option class="form-control" value="{{$i->name}}">{{$i->name}}</option>
+                                @foreach ($ktg as $i)
+                                    <option class="form-control" value="{{ $i->id }}">{{ $i->name }}</option>
                                 @endforeach
                             </select>
                         </div>
