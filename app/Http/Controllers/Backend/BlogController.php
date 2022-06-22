@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Master;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
-use App\Models\status;
 
-class StatusController extends Controller
+class BlogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,9 +21,9 @@ class StatusController extends Controller
         $data['type'] = 'Pelangi Bike';
         $data['url'] = URL::current();
 
-        $sts = DB::table('statuses')->orderBy('id','desc')->get();
+        // $sts = DB::table('statuses')->orderBy('id', 'desc')->get();
 
-        return view('backend.master.status.content.status', compact('data','sts'));
+        return view('backend.blog.content.blog', compact('data'));
     }
 
     /**
@@ -39,7 +38,9 @@ class StatusController extends Controller
         $data['type'] = 'Pelangi Bike';
         $data['url'] = URL::current();
 
-        return view('backend.master.status.function.create', compact('data'));
+        // $sts = DB::table('statuses')->orderBy('id', 'desc')->get();
+
+        return view('backend.blog.function.create', compact('data'));
     }
 
     /**
@@ -50,12 +51,7 @@ class StatusController extends Controller
      */
     public function store(Request $request)
     {
-        DB::table('statuses')->insert([
-            'name' => $request->name,
-            'description' => $request->description,
-        ]);
-
-        return redirect()->route('status.index');
+        //
     }
 
     /**
@@ -100,9 +96,6 @@ class StatusController extends Controller
      */
     public function destroy($id)
     {
-        $status = status::find('id');
-        $status->delete();
-
-        return redirect()->back()->with('success','Data Status berhasil dihapus');
+        //
     }
 }

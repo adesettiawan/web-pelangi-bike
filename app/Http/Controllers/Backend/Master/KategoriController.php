@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
+use App\Models\category;
 
 class KategoriController extends Controller
 {
@@ -21,7 +22,7 @@ class KategoriController extends Controller
         $data['type'] = 'Pelangi Bike';
         $data['url'] = URL::current();
 
-        $ktg = DB::table('categories')->orderBy('id','desc')->get();
+        $ktg = DB::table('categories')->orderBy('id', 'desc')->get();
 
         return view('backend.master.kategori.content.kategori', compact('data', 'ktg'));
     }
@@ -54,7 +55,7 @@ class KategoriController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->route('kategori.index');
+        return redirect()->route('kategori.index')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -99,6 +100,9 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $kategori = category::find($id);
+        $kategori->delete();
+
+        return redirect()->back()->with('success', 'Data Kategori Berhasil Dihapus');
     }
 }

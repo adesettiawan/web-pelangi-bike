@@ -10,7 +10,7 @@
     <div class="card-body">
         <div class="table-responsive">
             <a href="{{route('status.create')}}" class="btn btn-primary mb-4">Tambah</a>
-            <table class=" table display cell-border" id="dataTable" width="100%" cellspacing="0"data-page-length="25"> 
+            <table class=" table display cell-border" id="dataTable" width="100%" cellspacing="0"data-page-length="10"> 
                 <thead>
                     <tr>
                         <th class="text-center">No</th>
@@ -26,7 +26,11 @@
                         <td class="text-center">{{$no++}}</td>
                         <td class="text-center">{{$i->name}}</td>
                         <td class="text-center">{{$i->description}}</td>
-                        <td class="text-center"><a href="#" class="btn btn-danger btn-sm">Hapus</a></td>
+                        <td class="text-center"><form action="{{route('status.destroy',$i->id)}}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-danger btn-sm">Hapus</button>
+                        </form></td>
                     </tr>
                     @endforeach
                 </tbody>

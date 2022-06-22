@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\Master\ProdukController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -40,6 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
         'produk' => ProdukController::class,
         'kategori' => KategoriController::class,
         'status' => StatusController::class,
+        'blog' => BlogController::class,
     ]);
 });
 

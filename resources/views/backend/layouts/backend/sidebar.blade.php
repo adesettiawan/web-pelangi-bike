@@ -26,8 +26,8 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('dashboard') }}">
-                <span class="icon-bg"><i class="mdi mdi mdi-home menu-icon"></i></span>
+            <a class="nav-link" href="{{ route('blog.index') }}">
+                <span class="icon-bg"><i class="mdi mdi mdi-collage menu-icon"></i></span>
                 <span class="menu-title">Blog</span>
             </a>
         </li>
