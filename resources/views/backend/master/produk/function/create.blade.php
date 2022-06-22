@@ -26,19 +26,28 @@
                         <div class="form-group">
                             <label for="name">Nama :</label>
                             <input type="text" class="form-control" id="name"
-                                name="name"placeholder="Nama Produk">
+                                name="name"placeholder="Nama Produk" required>
                         </div>
                         <div class="form-group">
                             <label for="price">Harga :</label>
                             <input type="text" class="form-control" name="price" id="price"
                                 pattern="^\Rp\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency"
-                                placeholder="Harga Produk">
+                                placeholder="Harga Produk" required>
                         </div>
                         <div class="form-group">
                             <label for="category">Kategori :</label>
-                            <select class="form-control" id="category" name="category">
+                            <select class="form-control" id="category" name="category" required>
                                 <option class="form-control" readonly>-- Pilih Kategori --</option>
                                 @foreach ($ktg as $i)
+                                    <option class="form-control" value="{{ $i->id }}">{{ $i->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Status :</label>
+                            <select class="form-control" id="status" name="status" required>
+                                <option class="form-control" readonly>-- Pilih Status --</option>
+                                @foreach ($sts as $i)
                                     <option class="form-control" value="{{ $i->id }}">{{ $i->name }}</option>
                                 @endforeach
                             </select>
@@ -49,7 +58,7 @@
                                 alt="your image" class="mb-4" style="max-width:300px;" />
                             <div class="input-group col-xs-12">
                                 <input type="file" accept="image/*" class="form-control" style="display:none;"
-                                    id="image" name ="image" placeholder="image">
+                                    id="image" name ="image" placeholder="image" required>
                                 <span class="input-group-append">
                                     <button class="btn btn-primary" id="upfile" type="button">Upload</button>
                                 </span>

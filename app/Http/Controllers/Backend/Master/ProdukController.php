@@ -24,8 +24,12 @@ class ProdukController extends Controller
         $data['type'] = 'Pelangi Bike';
         $data['url'] = URL::current();
 
-        $prdk = category::join('products', 'categories.id', '=', 'products.category_id')
-        ->get(['products.*', 'categories.name as category_name']);
+        $prdk = DB::table('categories')
+        ->join('products', 'categories.id', '=', 'products.category_id')
+        ->join('statuses', 'products.status_id', '=', 'statuses.id')
+        ->select('products.*', 'categories.name as category_name', 'statuses.name as status_name')
+        ->get();
+
 
         return view('backend.master.produk.content.produk', compact('data','prdk'));
     }
@@ -42,9 +46,10 @@ class ProdukController extends Controller
         $data['type'] = 'Pelangi Bike';
         $data['url'] = URL::current();
 
-        $ktg = DB::table('categories')->get();
+        $ktg = DB::table('categories')->orderBy('id','desc')->get();
+        $sts = DB::table('statuses')->get();
 
-        return view('backend.master.produk.function.create', compact('data','ktg'));
+        return view('backend.master.produk.function.create', compact('data','ktg','sts'));
     }
 
     /**
@@ -60,6 +65,7 @@ class ProdukController extends Controller
         $prd->price = $request->price;
         $prd->description = $request->description;
         $prd->category_id = $request->category;
+        $prd->status_id = $request->status;
         if($request->file('image')) 
         {
             $file = $request->file('image');

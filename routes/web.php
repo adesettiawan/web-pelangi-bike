@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\Master\ProdukController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Master\KategoriController;
+use App\Http\Controllers\Backend\Master\StatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resources([
         'produk' => ProdukController::class,
         'kategori' => KategoriController::class,
+        'status' => StatusController::class,
     ]);
 });
 
