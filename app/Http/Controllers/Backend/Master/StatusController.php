@@ -100,7 +100,7 @@ class StatusController extends Controller
      */
     public function destroy($id)
     {
-        $status = status::find('id');
+        $status = status::find($id);
         $status->delete();
 
         return redirect()->back()->with('success','Data Status berhasil dihapus');
