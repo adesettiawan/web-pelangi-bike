@@ -52,15 +52,6 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name.*' => 'required|string|max:255|unique:statuses',
-            'slug.*' => 'required|string|max:255|unique:statuses',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withError('Data sudah terdaftar!')->withInput();
-        }
-
         DB::table('categories')->insert([
             'name' => $request->name,
             'description' => $request->description,

@@ -60,15 +60,6 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name.*' => 'required|string|max:255|unique:statuses',
-            'slug.*' => 'required|string|max:255|unique:statuses',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withError('Data sudah terdaftar!')->withInput();
-        }
-
         $prd = new product();
         $prd->name = $request->name;
         $prd->price = $request->price;
