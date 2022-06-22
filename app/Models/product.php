@@ -9,5 +9,22 @@ use Laravel\Sanctum\HasApiTokens;
 
 class product extends Model
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'slug',
+        'name',
+        'price',
+        'category_id',
+        'status_id',
+        'image',
+        'description',
+    ];
+
+    public $timestamps = true;
 }

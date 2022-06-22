@@ -12,6 +12,7 @@ class status extends Model
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
+        'slug',
         'name',
         'description',
     ];

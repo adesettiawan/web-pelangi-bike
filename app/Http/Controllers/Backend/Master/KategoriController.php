@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use App\Models\category;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 class KategoriController extends Controller
 {
@@ -50,12 +52,22 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name.*' => 'required|string|max:255|unique:statuses',
+            'slug.*' => 'required|string|max:255|unique:statuses',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withError('Data sudah terdaftar!')->withInput();
+        }
+
         DB::table('categories')->insert([
             'name' => $request->name,
             'description' => $request->description,
+            'slug' => Str::slug($request->name, '-'),
         ]);
 
-        return redirect()->route('kategori.index')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->route('kategori.create')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**

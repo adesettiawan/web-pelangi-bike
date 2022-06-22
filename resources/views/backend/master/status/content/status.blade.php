@@ -9,29 +9,38 @@
 @section('main-content')
     <div class="card-body">
         <div class="table-responsive">
-            <a href="{{route('status.create')}}" class="btn btn-primary mb-4">Tambah</a>
-            <table class=" table display cell-border" id="dataTable" width="100%" cellspacing="0"data-page-length="10"> 
+            <a href="{{ route('status.create') }}" class="btn btn-primary mb-4">Tambah</a>
+            <table class=" table display cell-border" id="dataTable" width="100%" cellspacing="0"data-page-length="10">
                 <thead>
                     <tr>
                         <th class="text-center">No</th>
                         <th class="text-center">Nama</th>
                         <th class="text-center">Deskripsi</th>
-                        <th class="text-center">Pilihan</th>
+                        <th class="text-center">Ubah</th>
+                        <th class="text-center">Hapus</th>
                     </tr>
                 </thead>
                 <?php $no = 1; ?>
                 <tbody>
-                    @foreach($sts as $i)
-                    <tr>
-                        <td class="text-center">{{$no++}}</td>
-                        <td class="text-center">{{$i->name}}</td>
-                        <td class="text-center">{{$i->description}}</td>
-                        <td class="text-center"><form action="{{route('status.destroy',$i->id)}}" method="post">
-                            @csrf
-                            @method('delete')
-                            <button class="btn btn-danger btn-sm">Hapus</button>
-                        </form></td>
-                    </tr>
+                    @foreach ($sts as $i)
+                        <tr>
+                            <td class="text-center">{{ $no++ }}</td>
+                            <td class="text-center">{{ $i->name }}</td>
+                            <td class="text-center">{{ $i->description }}</td>
+                            <td class="text-center">
+                                <form action="{{ route('status.edit', $i->slug) }}" method="get">
+                                    @csrf
+                                    <button class="btn btn-success btn-sm">Ubah</button>
+                                </form>
+                            </td>
+                            <td class="text-center">
+                                <form action="{{ route('status.destroy', $i->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-danger btn-sm">Hapus</button>
+                                </form>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
