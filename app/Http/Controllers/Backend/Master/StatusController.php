@@ -80,12 +80,12 @@ class StatusController extends Controller
      */
     public function edit($slug)
     {
-        $stt = DB::table('statuses')->where('slug', $slug)->get();
+        $stt = DB::table('statuses')->where('slug', $slug)->first();
         $data['title'] = 'Pelangi Bike';
         $data['intro'] = 'Pelangi Bike';
         $data['type'] = 'Pelangi Bike';
         $data['url'] = URL::current();
-        return view('backend.master.status.function.edit', compact('data'));
+        return view('backend.master.status.function.edit', compact('data', 'stt'));
     }
 
     /**
@@ -97,7 +97,15 @@ class StatusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::table('statuses')
+            ->where('id', $id)
+            ->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'slug' => Str::slug($request->name, '-'),
+            ]);
+
+        return redirect()->route('status.index')->withSuccess('Data berhasil diubah!');
     }
 
     /**

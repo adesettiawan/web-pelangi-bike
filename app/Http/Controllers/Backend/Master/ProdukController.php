@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
 use App\Models\product;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
 
 class ProdukController extends Controller
 {
@@ -63,6 +63,7 @@ class ProdukController extends Controller
         $prd = new product();
         $prd->name = $request->name;
         $prd->price = $request->price;
+        $prd->phone = $request->phone;
         $prd->description = $request->description;
         $prd->category_id = $request->category;
         $prd->status_id = $request->status;
@@ -95,9 +96,23 @@ class ProdukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $data['title'] = 'Pelangi Bike';
+        $data['intro'] = 'Pelangi Bike';
+        $data['type'] = 'Pelangi Bike';
+        $data['url'] = URL::current();
+
+        $ktg = DB::table('categories')->orderBy('id', 'desc')->get();
+        $sts = DB::table('statuses')->get();
+        $prdk = DB::table('categories')
+            ->where('products.slug', $slug)
+            ->join('products', 'categories.id', '=', 'products.category_id')
+            ->join('statuses', 'products.status_id', '=', 'statuses.id')
+            ->select('products.*', 'categories.name as category_name', 'statuses.name as status_name')
+            ->first();
+
+        return view('backend.master.produk.function.edit', compact('data', 'ktg', 'sts', 'prdk'));
     }
 
     /**
@@ -109,7 +124,31 @@ class ProdukController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $prd = product::find($id);
+        $prd->name = $request->name;
+        $prd->price = $request->price;
+        $prd->phone = $request->phone;
+        $prd->description = $request->description;
+        $prd->category_id = $request->category;
+        $prd->status_id = $request->status;
+        $prd->slug = Str::slug($request->name, '-');
+        $dest = storage_path('/app/public/produk/' . $prd->image);
+        if (!is_null($request->file('image'))) {
+            if (File::exists($dest)) {
+                File::delete($dest);
+            }
+
+            if ($request->file('image')) {
+                $file = $request->file('image');
+                $filename = time() . '.' . $file->extension();
+                $filePath = storage_path() . '/app/public/produk';
+                $file->move($filePath, $filename);
+                $prd->image = $filename;
+            }
+        }
+        $prd->update();
+
+        return redirect()->route('produk.index')->with('success', 'Data berhasil diubah');
     }
 
     /**
@@ -120,6 +159,13 @@ class ProdukController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $prd = DB::table('products')->where('id', $id)->first();
+        $dest = storage_path('/app/public/produk/' . $prd->image);
+
+        if (File::exists($dest)) {
+            File::delete($dest);
+        }
+        DB::table('products')->where('id', $id)->delete();
+        return redirect()->back()->with('success', 'Data berhasil dihapus');
     }
 }

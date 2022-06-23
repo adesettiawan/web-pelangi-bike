@@ -78,9 +78,14 @@ class KategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $ktg = DB::table('categories')->where('slug', $slug)->first();
+        $data['title'] = 'Pelangi Bike';
+        $data['intro'] = 'Pelangi Bike';
+        $data['type'] = 'Pelangi Bike';
+        $data['url'] = URL::current();
+        return view('backend.master.kategori.function.edit', compact('data', 'ktg'));
     }
 
     /**
@@ -92,7 +97,15 @@ class KategoriController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::table('categories')
+        ->where('id',$id)
+        ->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'slug' => Str::slug($request->name, '-'),
+        ]);
+
+        return redirect()->route('kategori.index')->withSuccess('Data berhasil diubah!');
     }
 
     /**

@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('slug')->unique();
             $table->string('name')->unique();
             $table->string('price');
+            $table->string('phone')->default('08129604786');
             $table->string('category_id')->nullable();
             $table->string('status_id')->nullable();
             $table->string('image')->nullable();

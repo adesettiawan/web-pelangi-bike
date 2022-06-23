@@ -24,7 +24,8 @@
                         <th class="text-center">No</th>
                         <th class="text-center">Nama</th>
                         <th class="text-center">Deskripsi</th>
-                        <th class="text-center">Pilihan</th>
+                        <th class="text-center">Ubah</th>
+                        <th class="text-center">Hapus</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,7 +36,13 @@
                             <td class="text-center">{{ $i->name }}</td>
                             <td class="text-center">{{ $i->description }}</td>
                             <td class="text-center">
-                                <form action="{{route('kategori.destroy',$i->id)}}" method="post">
+                                <form action="{{ route('kategori.edit', $i->slug) }}" method="get">
+                                    @csrf
+                                    <button class="btn btn-success btn-sm">Ubah</button>
+                                </form>
+                            </td>
+                            <td class="text-center">
+                                <form action="{{ route('kategori.destroy', $i->id) }}" method="post">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-danger btn-sm">Hapus</button>

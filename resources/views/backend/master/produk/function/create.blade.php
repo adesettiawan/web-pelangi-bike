@@ -39,8 +39,13 @@
                         <div class="form-group">
                             <label for="price">Harga :</label>
                             <input type="text" class="form-control" name="price" id="price"
-                                pattern="^\Rp\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency"
+                                pattern="^\Rp\d{1,3}(,\d{3})*(\.\d+)?$" data-type="currency"
                                 placeholder="Harga Produk" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Nomor Handphone :</label>
+                            <input type="text" class="form-control" id="phone"
+                                name="phone" value="08129604786" placeholder="Nomor Handphone" required>
                         </div>
                         <div class="form-group">
                             <label for="category">Kategori :</label>

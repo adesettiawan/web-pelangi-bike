@@ -19,7 +19,13 @@
                         <th class="text-center">Gambar</th>
                         <th class="text-center">Kategori</th>
                         <th class="text-center">status</th>
-                        <th class="text-center">Opsi</th>
+                        @foreach ($prdk as $i)
+                        @if ($i->status_name == 'diskon' || $i->status_name == 'promo')
+                            <th class="text-center">Diskon</th>
+                        @endif
+                        @endforeach
+                        <th class="text-center">ubah</th>
+                        <th class="text-center">Hapus</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,11 +41,21 @@
                             <td class="text-center">{{ $i->status_name }}</td>
                             @if ($i->status_name == 'diskon' || $i->status_name == 'promo')
                                 <td class="text-center"><a href="" class="btn btn-success btn-sm mr-2">Diskon</a>
-                                    <a href="" class="btn btn-danger btn-sm">Hapus</a>
                                 </td>
-                            @elseif ($i->status_name != 'diskon' || $i->status_name != 'promo')
-                                <td class="text-center"><a href="" class="btn btn-danger btn-sm">Hapus</a></td>
                             @endif
+                            <td class="text-center">
+                                <form action="{{ route('produk.edit', $i->slug) }}" method="get">
+                                    @csrf
+                                    <button class="btn btn-success btn-sm">ubah</button>
+                                </form>
+                            </td>
+                            <td class="text-center">
+                                <form action="{{ route('produk.destroy', $i->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-danger btn-sm">Hapus</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
