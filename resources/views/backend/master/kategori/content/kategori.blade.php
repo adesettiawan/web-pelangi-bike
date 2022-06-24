@@ -8,6 +8,14 @@
             </button>
         </div>
     @endif
+    @if (session('error'))
+        <div class="alert alert-danger border-left-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <div class="d-xl-flex justify-content-between align-items-start">
         <h2 class="text-dark font-weight-bold mb-2">Kategori</h2>
         <div class="d-sm-flex justify-content-xl-between align-items-center mb-2">
