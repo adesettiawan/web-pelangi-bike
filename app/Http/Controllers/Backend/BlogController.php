@@ -138,13 +138,13 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        $prd = DB::table('blogs')->where('id', $id)->first();
+        $prd = blog::where('id', $id)->first();
         $dest = storage_path('/app/public/blog/' . $prd->image);
 
         if (File::exists($dest)) {
             File::delete($dest);
         }
-        DB::table('blogs')->where('id', $id)->delete();
+        blog::where('id', $id)->delete();
         return redirect()->back()->with('success', 'Data berhasil dihapus');
     }
 }
