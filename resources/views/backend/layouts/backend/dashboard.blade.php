@@ -7,7 +7,6 @@
     <title><?php $te = isset($data) ? $data['title'] : 'Selamat Datang di Website Pelangi Bike';
     echo $te; ?></title>
     <link rel="stylesheet" href="{{ asset('backend-assets/vendors/mdi/css/materialdesignicons.min.css') }}">
-    <link rel="stylesheet" href=" {{ asset('backend-assets/vendors/flag-icon-css/css/flag-icon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend-assets/vendors/css/vendor.bundle.base.css') }}">
     <link rel="stylesheet" href="{{ asset('backend-assets/vendors/font-awesome/css/font-awesome.min.css') }}" />
     <link rel="stylesheet"
