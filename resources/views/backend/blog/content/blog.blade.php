@@ -16,20 +16,35 @@
                         <th class="text-center">No</th>
                         <th class="text-center">Judul</th>
                         <th class="text-center">Foto</th>
-                        <th class="text-center">Kontent</th>
-                        <th class="text-center">Pilihan</th>
+                        <th class="text-center">Konten</th>
+                        <th class="text-center">ubah</th>
+                        <th class="text-center">hapus</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $no = 1; ?>
-                    {{-- @foreach ($ktg as $i)
+                    @foreach ($blg as $i)
                         <tr>
                             <td class="text-center">{{ $no++ }}</td>
-                            <td class="text-center">{{ $i->name }}</td>
-                            <td class="text-center">{{ $i->description }}</td>
-                            <td class="text-center"><a href="#" class="btn btn-danger btn-sm">Hapus</a></td>
+                            <td class="text-center">{{ $i->title }}</td>
+                            <td class="text-center"><embed src="{{ asset('storage/blog/' . $i->image . '') }}"
+                                    style="max-width:200px;" /></td>
+                            <td class="text-center">{{ $i->content }}</td>
+                            <td class="text-center">
+                                <form action="{{ route('blog.edit', $i->slug) }}" method="get">
+                                    @csrf
+                                    <button class="btn btn-success btn-sm">Ubah</button>
+                                </form>
+                            </td>
+                            <td class="text-center">
+                                <form action="{{ route('blog.destroy', $i->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-danger btn-sm">Hapus</button>
+                                </form>
+                            </td>
                         </tr>
-                    @endforeach --}}
+                    @endforeach
                 </tbody>
             </table>
         </div>

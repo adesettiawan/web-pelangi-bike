@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use App\Models\blog;
+use Illuminate\Support\Facades\File;
 
 class BlogController extends Controller
 {
@@ -21,9 +24,9 @@ class BlogController extends Controller
         $data['type'] = 'Pelangi Bike';
         $data['url'] = URL::current();
 
-        // $sts = DB::table('statuses')->orderBy('id', 'desc')->get();
+        $blg = DB::table('blogs')->get();
 
-        return view('backend.blog.content.blog', compact('data'));
+        return view('backend.blog.content.blog', compact('data', 'blg'));
     }
 
     /**
@@ -51,7 +54,19 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $blg = new blog();
+        $blg->title = $request->title;
+        $blg->content = $request->content;
+        $blg->slug = Str::slug($request->title, '-');
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->extension();
+            $filePath = storage_path() . '/app/public/blog';
+            $file->move($filePath, $filename);
+            $blg->image = $filename;
+        }
+        $blg->save();
+        return redirect()->route('blog.create')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -71,9 +86,16 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $data['title'] = 'Pelangi Bike';
+        $data['intro'] = 'Pelangi Bike';
+        $data['type'] = 'Pelangi Bike';
+        $data['url'] = URL::current();
+
+        $blg = DB::table('blogs')->where('slug', $slug)->first();
+
+        return view('backend.blog.function.edit', compact('data', 'blg'));
     }
 
     /**
@@ -85,7 +107,27 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $blg = blog::find($id);
+        $blg->title = $request->title;
+        $blg->content = $request->content;
+        $blg->slug = Str::slug($request->title, '-');
+        $dest = storage_path('/app/public/blog/' . $blg->image);
+        if (!is_null($request->file('image'))) {
+            if (File::exists($dest)) {
+                File::delete($dest);
+            }
+
+            if ($request->file('image')) {
+                $file = $request->file('image');
+                $filename = time() . '.' . $file->extension();
+                $filePath = storage_path() . '/app/public/blog';
+                $file->move($filePath, $filename);
+                $blg->image = $filename;
+            }
+        }
+        $blg->update();
+
+        return redirect()->route('blog.index', $blg->slug)->with('success', 'Data berhasil diubah');
     }
 
     /**
@@ -96,6 +138,13 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $prd = DB::table('blogs')->where('id', $id)->first();
+        $dest = storage_path('/app/public/blog/' . $prd->image);
+
+        if (File::exists($dest)) {
+            File::delete($dest);
+        }
+        DB::table('blogs')->where('id', $id)->delete();
+        return redirect()->back()->with('success', 'Data berhasil dihapus');
     }
 }

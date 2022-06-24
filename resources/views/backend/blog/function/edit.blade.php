@@ -11,22 +11,23 @@
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Tambah Blog</h4>
-                    <form class="forms-sample" method="POST"
-                        action="{{ route('blog.store') }}"enctype="multipart/form-data">
+                    <h4 class="card-title">Ubah Blog</h4>
+                    <form class="forms-sample" action="{{ route('blog.update', $blg->id) }}"
+                        method="post"enctype="multipart/form-data">
                         @csrf
+                        @method('patch')
                         <div class="form-group">
                             <label for="title">Judul :</label>
                             <input type="text" class="form-control" id="title" name="title"placeholder="Judul"
-                                required>
+                                value="{{ $blg->title }}" required>
                         </div>
                         <div class="form-group">
                             <label for="image">Gambar :</label><br>
-                            <img id="prvwimg" src="{{ asset('backend-assets/images/default-image.jpg') }}"
-                                alt="your image" class="mb-4" style="max-width:300px;" />
+                            <img id="prvwimg" src="{{ asset('storage/blog/' . $blg->image) }}" alt="your image"
+                                class="mb-4" style="max-width:300px;" />
                             <div class="input-group col-xs-12">
-                                <input type="file" accept="image/*" class="form-control" style="display:none;"
-                                    id="image" name="image" placeholder="image" required>
+                                <input type="file" class="form-control" style="display:none;" id="image"
+                                    name="image" value="{{ $blg->image }}" placeholder="image">
                                 <span class="input-group-append">
                                     <button class="btn btn-primary" id="upfile" type="button">Upload</button>
                                 </span>
@@ -34,7 +35,7 @@
                         </div>
                         <div class="form-group">
                             <label for="description">Deskripsi :</label>
-                            <textarea class="form-control" id="content" name="content" rows="4"></textarea>
+                            <textarea class="form-control" id="content" name="content" rows="4" value="{{ $blg->content }}">{{ $blg->content }}</textarea>
                         </div>
                         <button type="submit" class="btn btn-success mr-2">Simpan</button>
                         <a href="{{ route('blog.index') }}" class="btn btn-danger">Cancel</a>
