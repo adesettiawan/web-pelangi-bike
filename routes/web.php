@@ -9,6 +9,7 @@ use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Master\KategoriController;
 use App\Http\Controllers\Backend\Master\StatusController;
+use App\Http\Controllers\Frontend\BlogController as FrontendBlogController;
 use App\Http\Controllers\Frontend\KategoriProdukController;
 use App\Http\Controllers\Frontend\ProdukController as FrontendProdukController;
 
@@ -28,15 +29,23 @@ use App\Http\Controllers\Frontend\ProdukController as FrontendProdukController;
 // ----------------------------------------------------------------------
 
 Route::get('/', [HomeController::class, 'index'])->name('beranda');
+
 Route::prefix('detail-produk')->group(function () {
     Route::get('/{slug}', [FrontendProdukController::class, 'productDetails'])->name('detail-produk.produkId');
 });
+
 Route::get('produk/{key:slug}', [KategoriProdukController::class, 'productByCategory'])->name('product-category.id');
+
+Route::get('blogs', [FrontendBlogController::class, 'index'])->name('blogs');
 
 Route::prefix('search')->group(function () {
     Route::get('/products', [FrontendProdukController::class, 'searchProducts'])->name('search-products');
+    Route::get('/blogs', [FrontendBlogController::class, 'searchBlogs'])->name('search-blogs');
 });
 
+Route::prefix('blog-details')->group(function () {
+    Route::get('/{slug}', [FrontendBlogController::class, 'blogDetails'])->name('blog-details.blogId');
+});
 
 // ----------------------------------------------------------------------
 // Backend

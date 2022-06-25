@@ -68,15 +68,29 @@
             </section>
             <!-- End Best Seller -->
             <!-- Start pagination Bar -->
-            <div class="pagination">
-                <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
-                <a href="#" class="active">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
-                <a href="#">6</a>
-                <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-            </div>
+            <nav class="blog-pagination justify-content-start d-flex">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a href="#" class="page-link" aria-label="Previous">
+                            <span aria-hidden="true">
+                                <span class="lnr lnr-chevron-left"></span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a href="#" class="page-link">1</a></li>
+                    <li class="page-item active"><a href="#" class="page-link">2</a></li>
+                    <li class="page-item"><a href="#" class="page-link">3</a></li>
+                    <li class="page-item"><a href="#" class="page-link">4</a></li>
+                    <li class="page-item"><a href="#" class="page-link">9</a></li>
+                    <li class="page-item">
+                        <a href="#" class="page-link" aria-label="Next">
+                            <span aria-hidden="true">
+                                <span class="lnr lnr-chevron-right"></span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
             <!-- End pagination Bar -->
         </div>
     </div>
