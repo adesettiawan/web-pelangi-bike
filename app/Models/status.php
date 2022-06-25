@@ -18,4 +18,9 @@ class status extends Model
     ];
 
     public $timestamps = true;
+
+    public function product_sts()
+    {
+        return $this->hasOne(product::class, 'status_id', 'id');
+    }
 }

@@ -7,6 +7,7 @@
             <div class="col-lg-12">
                 <div class="active-banner-slider owl-carousel">
                     <!-- single-slide -->
+                    @foreach ($produk_slider as $item)
                     <div class="row single-slide align-items-center d-flex">
                         <div class="col-lg-7 col-md-6">
                             <div class="banner-content">
@@ -27,34 +28,14 @@
                             </div>
                         </div>
                     </div>
-                    <!-- single-slide -->
-                    <div class="row single-slide align-items-center d-flex">
-                        <div class="col-lg-7 col-md-6">
-                            <div class="banner-content">
-                                <h1>Bycicles New <br>Collection!</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et
-                                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                                <div class="add-bag d-flex align-items-center">
-                                    <a class="add-btn" href=""><span class="lnr lnr-arrow-right-circle"></span></a>
-                                    <span class="add-text text-uppercase">View More</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-5">
-                            <div class="banner-img">
-                                <img class="img-fluid" src="{{ url('frontend-assets/img/banner/banner-img1.png') }}"
-                                    alt="">
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
 </section>
 <!-- End banner Area -->
-{{-- 
+{{--
 <!-- start features Area -->
 <section class="features-area section_gap">
     <div class="container">
@@ -184,29 +165,45 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 text-center">
                     <div class="section-title">
-                        <h1>Produk Kami</h1>
+                        <h1>Best Seller</h1>
                         <p>Kami menyediakan produk sepeda dengan berbagai variansi dan terpercaya. Produk yang kami
                             sediakan merupakan produk sepeda dengan kualitas yang baik.</p>
                     </div>
                 </div>
             </div>
             <div class="row">
+                @foreach ($produk_all->take(8) as $item)
                 <!-- single product -->
+                @if ($item->status_id == 2)
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
-                        <img class="img-fluid" src="{{ url('frontend-assets/img/product/p1.jpg') }}" alt="">
+                        <img class="img-fluid" src="{{ Storage::url('produk/'.$item->image) }}" alt="">
                         <div class="product-details">
-                            <h6>eUrban Neo Leonardo</h6>
+                            <h6>{{ $item->name }}</h6>
                             <div class="price">
-                                <h6>Rp. 2.400.000</h6>
-                                <h6 class="l-through">Rp. 2.550.000</h6>
+                                <h6>{{ $item->price }}</h6>
+                                @if ($item->status_id !='')
+                                <h6 class="l-through"
+                                    style="color: #f44a40; position: absolute;  top: 8px; left: 5px; margin: auto;">
+                                    <span class="genric-btn danger circle"
+                                        style="line-height: 28px; padding: 0px 15px; background: #f44a40;color: #fff">{{
+                                        $item->productStatus->name }}</span>
+                                </h6>
+                                @endif
+                                <h6 class="l-through">
+                                    <i class="fa fa-tags" style="color: #f44a40;"></i>&nbsp;<a
+                                        href="{{ route('product-category.id',$item->productCategory->slug) }}"
+                                        style="color: #f44a40; font-size: 12px">{{$item->productCategory->name
+                                        }}</a>
+                                </h6>
                             </div>
                             <div class="prd-bottom">
-                                <a href="" class="social-info">
+                                <a href="https://api.whatsapp.com/send?phone={{ ($item && substr($item->phone,0,2) == '08') ? '62'.substr($item->phone,1) : $item->phone}}&text=Hallo%2C%20Saya%20ingin%20memesan%20sepeda%20merk%20*{{ $item->name }}*%20di%20Pelangi%20Bike.%20Untuk%20pemesanannya%20bagaimana%20ya%3F"
+                                    class="social-info" target="_blank">
                                     <span class="ti-comment-alt"></span>
                                     <p class="hover-text">Buy Now</p>
                                 </a>
-                                <a href="" class="social-info">
+                                <a href="{{ route('detail-produk.produkId',$item->slug) }}" class="social-info">
                                     <span class="lnr lnr-move"></span>
                                     <p class="hover-text">view more</p>
                                 </a>
@@ -214,173 +211,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="{{ url('frontend-assets/img/product/p2.jpg') }}" alt="">
-                        <div class="product-details">
-                            <h6>Electric Bike Vehicle</h6>
-                            <div class="price">
-                                <h6>Rp. 2.200.000</h6>
-                                {{-- <h6 class="l-through">Rp. 2.250.000</h6> --}}
-                            </div>
-                            <div class="prd-bottom">
-
-                                <a href="" class="social-info">
-                                    <span class="ti-comment-alt"></span>
-                                    <p class="hover-text">Buy Now</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="{{ url('frontend-assets/img/product/p3.jpg') }}" alt="">
-                        <div class="product-details">
-                            <h6>Sepeda Contoh 4</h6>
-                            <div class="price">
-                                <h6>Rp. 2.200.000</h6>
-                                <h6 class="l-through">Rp. 2.250.000</h6>
-                            </div>
-                            <div class="prd-bottom">
-                                <a href="" class="social-info">
-                                    <span class="ti-comment-alt"></span>
-                                    <p class="hover-text">Buy Now</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="{{ url('frontend-assets/img/product/p4.jpg') }}" alt="">
-                        <div class="product-details">
-                            <h6>Sepeda Contoh 5</h6>
-                            <div class="price">
-                                <h6>Rp. 2.200.000</h6>
-                                <h6 class="l-through">Rp. 2.250.000</h6>
-                            </div>
-                            <div class="prd-bottom">
-
-                                <a href="" class="social-info">
-                                    <span class="ti-comment-alt"></span>
-                                    <p class="hover-text">Buy Now</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="{{ url('frontend-assets/img/product/p4.jpg') }}" alt="">
-                        <div class="product-details">
-                            <h6>Sepeda Contoh 6</h6>
-                            <div class="price">
-                                <h6>Rp. 2.200.000</h6>
-                                <h6 class="l-through">Rp. 2.250.000</h6>
-                            </div>
-                            <div class="prd-bottom">
-
-                                <a href="" class="social-info">
-                                    <span class="ti-comment-alt"></span>
-                                    <p class="hover-text">Buy Now</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="{{ url('frontend-assets/img/product/p3.jpg') }}" alt="">
-                        <div class="product-details">
-                            <h6>Sepeda Contoh 7</h6>
-                            <div class="price">
-                                <h6>Rp. 2.200.000</h6>
-                                <h6 class="l-through">Rp. 2.250.000</h6>
-                            </div>
-                            <div class="prd-bottom">
-
-                                <a href="" class="social-info">
-                                    <span class="ti-comment-alt"></span>
-                                    <p class="hover-text">Buy Now</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="{{ url('frontend-assets/img/product/p2.jpg') }}" alt="">
-                        <div class="product-details">
-                            <h6>Sepeda Contoh 8</h6>
-                            <div class="price">
-                                <h6>Rp. 2.200.000</h6>
-                                <h6 class="l-through">Rp. 2.250.000</h6>
-                            </div>
-                            <div class="prd-bottom">
-
-                                <a href="" class="social-info">
-                                    <span class="ti-comment-alt"></span>
-                                    <p class="hover-text">Buy Now</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="{{ url('frontend-assets/img/product/p1.jpg') }}" alt="">
-                        <div class="product-details">
-                            <h6>Sepeda Contoh 9</h6>
-                            <div class="price">
-                                <h6>Rp. 2.200.000</h6>
-                                <h6 class="l-through">Rp. 2.250.000</h6>
-                            </div>
-                            <div class="prd-bottom">
-
-                                <a href="" class="social-info">
-                                    <span class="ti-comment-alt"></span>
-                                    <p class="hover-text">Buy Now</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endif
+                @endforeach
             </div>
         </div>
     </div>
@@ -390,29 +222,44 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 text-center">
                     <div class="section-title">
-                        <h1>Produk Kami</h1>
+                        <h1>Produk Lainnya</h1>
                         <p>Kami menyediakan produk sepeda dengan berbagai variansi dan terpercaya. Produk yang kami
                             sediakan merupakan produk sepeda dengan kualitas yang baik.</p>
                     </div>
                 </div>
             </div>
             <div class="row">
+                @foreach ($produk_all->take(8) as $item)
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
-                        <img class="img-fluid" src="{{ url('frontend-assets/img/product/p1.jpg') }}" alt="">
+                        <img class="img-fluid" src="{{ Storage::url('produk/'.$item->image) }}" alt="">
                         <div class="product-details">
-                            <h6>eUrban Neo Leonardo</h6>
+                            <h6>{{ $item->name }}</h6>
                             <div class="price">
-                                <h6>Rp. 2.400.000</h6>
-                                <h6 class="l-through">Rp. 2.550.000</h6>
+                                <h6>{{ $item->price }}</h6>
+                                @if ($item->status_id !='')
+                                <h6 class="l-through"
+                                    style="color: #f44a40; position: absolute;  top: 8px; left: 5px; margin: auto;">
+                                    <span class="genric-btn danger circle"
+                                        style="line-height: 28px; padding: 0px 15px; background: #f44a40;color: #fff">{{
+                                        $item->productStatus->name }}</span>
+                                </h6>
+                                @endif
+                                <h6 class="l-through">
+                                    <i class="fa fa-tags" style="color: #f44a40;"></i>&nbsp;<a
+                                        href="{{ route('product-category.id',$item->productCategory->slug) }}"
+                                        style="color: #f44a40; font-size: 12px">{{$item->productCategory->name
+                                        }}</a>
+                                </h6>
                             </div>
                             <div class="prd-bottom">
-                                <a href="" class="social-info">
+                                <a href="https://api.whatsapp.com/send?phone={{ ($item && substr($item->phone,0,2) == '08') ? '62'.substr($item->phone,1) : $item->phone}}&text=Hallo%2C%20Saya%20ingin%20memesan%20sepeda%20merk%20*{{ $item->name }}*%20di%20Pelangi%20Bike.%20Untuk%20pemesanannya%20bagaimana%20ya%3F"
+                                    class="social-info" target="_blank">
                                     <span class="ti-comment-alt"></span>
                                     <p class="hover-text">Buy Now</p>
                                 </a>
-                                <a href="" class="social-info">
+                                <a href="{{ route('detail-produk.produkId',$item->slug) }}" class="social-info">
                                     <span class="lnr lnr-move"></span>
                                     <p class="hover-text">view more</p>
                                 </a>
@@ -420,276 +267,12 @@
                         </div>
                     </div>
                 </div>
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="{{ url('frontend-assets/img/product/p2.jpg') }}" alt="">
-                        <div class="product-details">
-                            <h6>Electric Bike Vehicle</h6>
-                            <div class="price">
-                                <h6>Rp. 2.200.000</h6>
-                                {{-- <h6 class="l-through">Rp. 2.250.000</h6> --}}
-                            </div>
-                            <div class="prd-bottom">
-
-                                <a href="" class="social-info">
-                                    <span class="ti-comment-alt"></span>
-                                    <p class="hover-text">Buy Now</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="{{ url('frontend-assets/img/product/p3.jpg') }}" alt="">
-                        <div class="product-details">
-                            <h6>Sepeda Contoh 4</h6>
-                            <div class="price">
-                                <h6>Rp. 2.200.000</h6>
-                                <h6 class="l-through">Rp. 2.250.000</h6>
-                            </div>
-                            <div class="prd-bottom">
-                                <a href="" class="social-info">
-                                    <span class="ti-comment-alt"></span>
-                                    <p class="hover-text">Buy Now</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="{{ url('frontend-assets/img/product/p4.jpg') }}" alt="">
-                        <div class="product-details">
-                            <h6>Sepeda Contoh 5</h6>
-                            <div class="price">
-                                <h6>Rp. 2.200.000</h6>
-                                <h6 class="l-through">Rp. 2.250.000</h6>
-                            </div>
-                            <div class="prd-bottom">
-
-                                <a href="" class="social-info">
-                                    <span class="ti-comment-alt"></span>
-                                    <p class="hover-text">Buy Now</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="{{ url('frontend-assets/img/product/p4.jpg') }}" alt="">
-                        <div class="product-details">
-                            <h6>Sepeda Contoh 6</h6>
-                            <div class="price">
-                                <h6>Rp. 2.200.000</h6>
-                                <h6 class="l-through">Rp. 2.250.000</h6>
-                            </div>
-                            <div class="prd-bottom">
-
-                                <a href="" class="social-info">
-                                    <span class="ti-comment-alt"></span>
-                                    <p class="hover-text">Buy Now</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="{{ url('frontend-assets/img/product/p3.jpg') }}" alt="">
-                        <div class="product-details">
-                            <h6>Sepeda Contoh 7</h6>
-                            <div class="price">
-                                <h6>Rp. 2.200.000</h6>
-                                <h6 class="l-through">Rp. 2.250.000</h6>
-                            </div>
-                            <div class="prd-bottom">
-
-                                <a href="" class="social-info">
-                                    <span class="ti-comment-alt"></span>
-                                    <p class="hover-text">Buy Now</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="{{ url('frontend-assets/img/product/p2.jpg') }}" alt="">
-                        <div class="product-details">
-                            <h6>Sepeda Contoh 8</h6>
-                            <div class="price">
-                                <h6>Rp. 2.200.000</h6>
-                                <h6 class="l-through">Rp. 2.250.000</h6>
-                            </div>
-                            <div class="prd-bottom">
-
-                                <a href="" class="social-info">
-                                    <span class="ti-comment-alt"></span>
-                                    <p class="hover-text">Buy Now</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="{{ url('frontend-assets/img/product/p1.jpg') }}" alt="">
-                        <div class="product-details">
-                            <h6>Sepeda Contoh 9</h6>
-                            <div class="price">
-                                <h6>Rp. 2.200.000</h6>
-                                <h6 class="l-through">Rp. 2.250.000</h6>
-                            </div>
-                            <div class="prd-bottom">
-
-                                <a href="" class="social-info">
-                                    <span class="ti-comment-alt"></span>
-                                    <p class="hover-text">Buy Now</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
 </section>
 <!-- end product Area -->
-
-<!-- Start exclusive deal Area -->
-{{-- <section class="exclusive-deal-area">
-    <div class="container-fluid">
-        <div class="row justify-content-center align-items-center">
-            <div class="col-lg-6 no-padding exclusive-left">
-                <div class="row clock_sec clockdiv" id="clockdiv">
-                    <div class="col-lg-12">
-                        <h1>Exclusive Hot Deal Ends Soon!</h1>
-                        <p>Who are in extremely love with eco friendly system.</p>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="row clock-wrap">
-                            <div class="col clockinner1 clockinner">
-                                <h1 class="days">150</h1>
-                                <span class="smalltext">Days</span>
-                            </div>
-                            <div class="col clockinner clockinner1">
-                                <h1 class="hours">23</h1>
-                                <span class="smalltext">Hours</span>
-                            </div>
-                            <div class="col clockinner clockinner1">
-                                <h1 class="minutes">47</h1>
-                                <span class="smalltext">Mins</span>
-                            </div>
-                            <div class="col clockinner clockinner1">
-                                <h1 class="seconds">59</h1>
-                                <span class="smalltext">Secs</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a href="" class="primary-btn">Shop Now</a>
-            </div>
-            <div class="col-lg-6 no-padding exclusive-right">
-                <div class="active-exclusive-product-slider">
-                    <!-- single exclusive carousel -->
-                    <div class="single-exclusive-slider">
-                        <img class="img-fluid" src="img/product/e-p1.png" alt="">
-                        <div class="product-details">
-                            <div class="price">
-                                <h6>Rp. 2.200.000</h6>
-                                <h6 class="l-through">Rp. 2.250.000</h6>
-                            </div>
-                            <h4>addidas New Hammer sole
-                                for Sports person</h4>
-                            <div class="add-bag d-flex align-items-center justify-content-center">
-                                <a class="add-btn" href=""><span class="ti-bag"></span></a>
-                                <span class="add-text text-uppercase">Add to Bag</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single exclusive carousel -->
-                    <div class="single-exclusive-slider">
-                        <img class="img-fluid" src="img/product/e-p1.png" alt="">
-                        <div class="product-details">
-                            <div class="price">
-                                <h6>Rp. 2.200.000</h6>
-                                <h6 class="l-through">Rp. 2.250.000</h6>
-                            </div>
-                            <h4>addidas New Hammer sole
-                                for Sports person</h4>
-                            <div class="add-bag d-flex align-items-center justify-content-center">
-                                <a class="add-btn" href=""><span class="ti-bag"></span></a>
-                                <span class="add-text text-uppercase">Add to Bag</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> --}}
-<!-- End exclusive deal Area -->
-
-<!-- Start brand Area -->
-{{-- <section class="brand-area section_gap">
-    <div class="container">
-        <div class="row">
-            <a class="col single-img" href="#">
-                <img class="img-fluid d-block mx-auto" src="img/brand/1.png" alt="">
-            </a>
-            <a class="col single-img" href="#">
-                <img class="img-fluid d-block mx-auto" src="img/brand/2.png" alt="">
-            </a>
-            <a class="col single-img" href="#">
-                <img class="img-fluid d-block mx-auto" src="img/brand/3.png" alt="">
-            </a>
-            <a class="col single-img" href="#">
-                <img class="img-fluid d-block mx-auto" src="img/brand/4.png" alt="">
-            </a>
-            <a class="col single-img" href="#">
-                <img class="img-fluid d-block mx-auto" src="img/brand/5.png" alt="">
-            </a>
-        </div>
-    </div>
-</section> --}}
-<!-- End brand Area -->
 
 <!-- Start related-product Area -->
 <section class="related-product-area section_gap_bottom">
@@ -697,140 +280,47 @@
         <div class="row justify-content-center">
             <div class="col-lg-6 text-center">
                 <div class="section-title">
-                    <h1>Penawaran Minggu Ini</h1>
+                    <h1>Promo Minggu Ini</h1>
                     <p>Kami menyediakan harga promo setiap minggu pada produk sepeda kami. produk kami memiliki kualias
                         yang baik.</p>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-9">
+            <div class="col-lg-12">
                 <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
+                    @foreach ($produk_all->take(12) as $item)
+                    @if ($item->status_id ==1)
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-20">
                         <div class="single-related-product d-flex">
-                            <a href="#"><img style="width: 75px; border-radius: 8px;"
-                                    src="{{ url('frontend-assets/img/product/p1.jpg') }}" alt=""></a>
+                            <a href="{{ route('detail-produk.produkId',$item->slug) }}"><img
+                                    style="width: 75px; border-radius: 8px;"
+                                    src="{{ Storage::url('produk/'.$item->image) }}" alt=""></a>
                             <div class="desc">
-                                <a href="#" class="title">Judul Sepeda</a>
+                                <a href="{{ route('detail-produk.produkId',$item->slug) }}" class="title">{{ $item->name
+                                    }}</a>
                                 <div class="price">
-                                    <h6>Rp. 2.400.000</h6>
-                                    <h6 class="l-through">Rp. 2.550.000</h6>
+                                    <h6>{{ $item->price }}</h6>
+                                    @if ($item->status_id !='')
+                                    <h6 class="l-through"
+                                        style="color: #f44a40; position: absolute; top: 0px; left: 8px; margin: auto;">
+                                        <span class="genric-btn danger circle"
+                                            style="line-height: 12px; padding: 0px 8px; font-size: 7px; background: #f44a40; color: #fff">{{
+                                            $item->productStatus->name }}</span>
+                                    </h6>
+                                    @endif
+                                    <h6 class="l-through">
+                                        <i class="fa fa-tags" style="color: #f44a40;"></i>&nbsp;<a
+                                            href="{{ route('product-category.id',$item->productCategory->slug) }}"
+                                            style="color: #f44a40; font-size: 10px">{{$item->productCategory->name
+                                            }}</a>
+                                    </h6>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                        <div class="single-related-product d-flex">
-                            <a href="#"><img style="width: 75px; border-radius: 8px;"
-                                    src="{{ url('frontend-assets/img/product/p2.jpg') }}" alt=""></a>
-                            <div class="desc">
-                                <a href="#" class="title">Judul Sepeda</a>
-                                <div class="price">
-                                    <h6>Rp. 2.400.000</h6>
-                                    <h6 class="l-through">Rp. 2.550.000</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                        <div class="single-related-product d-flex">
-                            <a href="#"><img style="width: 75px; border-radius: 8px;"
-                                    src="{{ url('frontend-assets/img/product/p3.jpg') }}" alt=""></a>
-                            <div class="desc">
-                                <a href="#" class="title">Judul Sepeda</a>
-                                <div class="price">
-                                    <h6>Rp. 2.400.000</h6>
-                                    <h6 class="l-through">Rp. 2.550.000</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                        <div class="single-related-product d-flex">
-                            <a href="#"><img style="width: 75px; border-radius: 8px;"
-                                    src="{{ url('frontend-assets/img/product/p4.jpg') }}" alt=""></a>
-                            <div class="desc">
-                                <a href="#" class="title">Judul Sepeda</a>
-                                <div class="price">
-                                    <h6>Rp. 2.400.000</h6>
-                                    <h6 class="l-through">Rp. 2.550.000</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                        <div class="single-related-product d-flex">
-                            <a href="#"><img style="width: 75px; border-radius: 8px;"
-                                    src="{{ url('frontend-assets/img/product/p4.jpg') }}" alt=""></a>
-                            <div class="desc">
-                                <a href="#" class="title">Judul Sepeda</a>
-                                <div class="price">
-                                    <h6>Rp. 2.400.000</h6>
-                                    <h6 class="l-through">Rp. 2.550.000</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                        <div class="single-related-product d-flex">
-                            <a href="#"><img style="width: 75px; border-radius: 8px;"
-                                    src="{{ url('frontend-assets/img/product/p3.jpg') }}" alt=""></a>
-                            <div class="desc">
-                                <a href="#" class="title">Judul Sepeda</a>
-                                <div class="price">
-                                    <h6>Rp. 2.400.000</h6>
-                                    <h6 class="l-through">Rp. 2.550.000</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6">
-                        <div class="single-related-product d-flex">
-                            <a href="#"><img style="width: 75px; border-radius: 8px;"
-                                    src="{{ url('frontend-assets/img/product/p2.jpg') }}" alt=""></a>
-                            <div class="desc">
-                                <a href="#" class="title">Judul Sepeda</a>
-                                <div class="price">
-                                    <h6>Rp. 2.400.000</h6>
-                                    <h6 class="l-through">Rp. 2.550.000</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6">
-                        <div class="single-related-product d-flex">
-                            <a href="#"><img style="width: 75px; border-radius: 8px;"
-                                    src="{{ url('frontend-assets/img/product/p1.jpg') }}" alt=""></a>
-                            <div class="desc">
-                                <a href="#" class="title">Judul Sepeda</a>
-                                <div class="price">
-                                    <h6>Rp. 2.400.000</h6>
-                                    <h6 class="l-through">Rp. 2.550.000</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6">
-                        <div class="single-related-product d-flex">
-                            <a href="#"><img style="width: 75px; border-radius: 8px;"
-                                    src="{{ url('frontend-assets/img/product/p3.jpg') }}" alt=""></a>
-                            <div class="desc">
-                                <a href="#" class="title">Judul Sepeda</a>
-                                <div class="price">
-                                    <h6>Rp. 2.400.000</h6>
-                                    <h6 class="l-through">Rp. 2.550.000</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="ctg-right">
-                    <a href="#" target="_blank">
-                        <img class="img-fluid d-block mx-auto" src="{{ url('frontend-assets/img/category/c5.jpg') }}"
-                            alt="">
-                    </a>
+                    @endif
+                    @endforeach
                 </div>
             </div>
         </div>

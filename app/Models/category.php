@@ -23,4 +23,9 @@ class category extends Model
     ];
 
     public $timestamps = true;
+
+    public function products()
+    {
+        return $this->hasOne(product::class, 'category_id', 'id');
+    }
 }

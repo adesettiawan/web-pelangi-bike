@@ -27,4 +27,14 @@ class product extends Model
     ];
 
     public $timestamps = true;
+
+    public function productCategory()
+    {
+        return $this->belongsTo(category::class, 'category_id', 'id');
+    }
+
+    public function productStatus()
+    {
+        return $this->belongsTo(status::class, 'status_id', 'id');
+    }
 }

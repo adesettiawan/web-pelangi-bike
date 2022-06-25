@@ -9,6 +9,8 @@ use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Master\KategoriController;
 use App\Http\Controllers\Backend\Master\StatusController;
+use App\Http\Controllers\Frontend\KategoriProdukController;
+use App\Http\Controllers\Frontend\ProdukController as FrontendProdukController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +28,15 @@ use App\Http\Controllers\Backend\Master\StatusController;
 // ----------------------------------------------------------------------
 
 Route::get('/', [HomeController::class, 'index'])->name('beranda');
+Route::prefix('detail-produk')->group(function () {
+    Route::get('/{slug}', [FrontendProdukController::class, 'productDetails'])->name('detail-produk.produkId');
+});
+Route::get('produk/{key:slug}', [KategoriProdukController::class, 'productByCategory'])->name('product-category.id');
+
+Route::prefix('search')->group(function () {
+    Route::get('/products', [FrontendProdukController::class, 'searchProducts'])->name('search-products');
+});
+
 
 // ----------------------------------------------------------------------
 // Backend
