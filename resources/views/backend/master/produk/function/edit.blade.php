@@ -51,22 +51,22 @@
                             <label for="category">Kategori :</label>
                             <select class="form-control" id="category" name="category">
                                 <option class="form-control" value="{{ $prdk->category_id }}" selected>
-                                    {{ $prdk->category_name }}
+                                    {{ $prdk->productCategory->name }}
                                 </option>
-                                @foreach ($ktg as $i)
-                                    <option class="form-control" value="{{ $i->id }}">{{ $i->name }}</option>
-                                @endforeach
+                                <option class="form-control" value="{{ $prdk->productCategory->id }}">
+                                    {{ $prdk->productCategory->name }}</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="category">Status :</label>
                             <select class="form-control" id="status" name="status">
-                                <option class="form-control" value="{{ $prdk->status_id }}" selected>
-                                    {{ $prdk->status_name }}
+                                <option class="form-control"value="{{ $prdk->status }}"
+                                    {{ $prdk->status ? 'selected' : '' }}>
+                                    {{ $prdk->status }}
                                 </option>
-                                @foreach ($sts as $i)
-                                    <option class="form-control" value="{{ $i->id }}">{{ $i->name }}</option>
-                                @endforeach
+                                <option class="form-control" value="nett">nett</option>
+                                <option class="form-control" value="promo">promo</option>
+                                <option class="form-control" value="best seller">best seller</option>
                             </select>
                         </div>
                         <div class="form-group">
