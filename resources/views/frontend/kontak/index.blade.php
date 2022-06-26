@@ -45,7 +45,7 @@
                     </div>
                     <div class="info_item">
                         <i class="lnr lnr-phone-handset"></i>
-                        <h6><a href="https://api.whatsapp.com/send?phone=088129604786&text=Hallo%2C%20Saya%20ingin%20memesan%20sepeda%20di%20Pelangi%20Bike.%20Untuk%20pemesanannya%20bagaimana%20ya%3F"
+                        <h6><a href="https://api.whatsapp.com/send?phone=08129604786&text=Hallo%2C%20Saya%20ingin%20memesan%20sepeda%20di%20Pelangi%20Bike.%20Bagaimana%20cara%20pemesanannya%3F"
                                 target="_blank">08129604786</a></h6>
                         <p>Buka Setiap Hari.</p>
                     </div>
