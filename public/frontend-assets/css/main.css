@@ -7159,10 +7159,10 @@ label {
     font-weight: 600;
 }
 .contact_info .info_item h6 {
-    font-size: 16px;
+    font-size: 15px;
     line-height: 24px;
     color: "Roboto", sans-serif;
-    font-weight: bold;
+    font-weight: 500;
     margin-bottom: 0px;
     color: #222222;
 }
