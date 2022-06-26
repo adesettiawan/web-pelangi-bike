@@ -20,6 +20,8 @@
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('kategori.index') }}">Kategori</a>
                     </li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('kategori.index') }}">Slider</a>
+                    </li>
                 </ul>
             </div>
         </li>

@@ -36,9 +36,7 @@
                         <th class="text-center">Kategori</th>
                         <th class="text-center">Status</th>
                         <th class="text-center">Deskripsi</th>
-                        @if ($prdk->first()->status == 'promo')
-                            <th class="text-center">Diskon</th>
-                        @endif
+                        <th class="text-center">Diskon</th>
                         <th class="text-center">Ubah</th>
                         <th class="text-center">Hapus</th>
                     </tr>
@@ -54,13 +52,16 @@
                                     style="max-width:100px; max-height: 50px" /></td>
                             <td class="text-center">{{ $i->category_name }}</td>
                             <td class="text-center">{{ $i->status }}</td>
-                            @if ($i->status == 'promo')
-                                <td class="text-center"><a href="" class="btn btn-success btn-sm mr-2">Diskon</a>
-                                </td>
-                            @endif
                             <td class="text-left" style="white-space: pre-line; word-break: break-all">
                                 {{ $i->description }}
                             </td>
+                            @if ($i->status == 'promo')
+                                <td class="text-center"><a href="" class="btn btn-success btn-sm mr-2">Diskon</a>
+                                </td>
+                            @else
+                                <td class="text-center"><button type="button" class="btn btn-danger btn-sm mr-2" disabled>
+                                        Diskon</button></td>
+                            @endif
                             <td class="text-center">
                                 <form action="{{ route('produk.edit', $i->slug) }}" method="get">
                                     @csrf
