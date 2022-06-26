@@ -21,7 +21,7 @@ class product extends Model
         'name',
         'price',
         'category_id',
-        'status_id',
+        'status',
         'image',
         'description',
     ];
@@ -31,10 +31,5 @@ class product extends Model
     public function productCategory()
     {
         return $this->belongsTo(category::class, 'category_id', 'id');
-    }
-
-    public function productStatus()
-    {
-        return $this->belongsTo(status::class, 'status_id', 'id');
     }
 }

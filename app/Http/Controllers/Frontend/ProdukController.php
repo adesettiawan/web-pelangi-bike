@@ -20,7 +20,7 @@ class ProdukController extends Controller
         $products    = product::when($request->keyword, function ($query) use ($request) {
             $query
                 ->where('name', 'like', "%{$request->keyword}%");
-        })->orderBy('created_at', 'desc')->paginate(8);
+        })->orderBy('created_at', 'desc')->paginate(12);
         //menimpa request keyword
         $products->appends($request->only('keyword'));
 

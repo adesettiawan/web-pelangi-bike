@@ -55,7 +55,7 @@
                     <aside class="single_sidebar_widget popular_post_widget">
                         <h3 class="widget_title" style="font-size: 16px">Best Seller Produk</h3>
                         @foreach ($products as $item)
-                        @if ($item->status_id ==2)
+                        @if ($item->status =='best seller')
                         <div class="media post_item">
                             <img style="max-width: 70px;max-height: 50px"
                                 src="{{ Storage::url('produk/'.$item->image) }}" alt="post">

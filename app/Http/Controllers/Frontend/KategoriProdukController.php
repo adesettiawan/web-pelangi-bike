@@ -18,7 +18,7 @@ class KategoriProdukController extends Controller
         $data['url'] = URL::current();
 
         $product_category = category::select(['id', 'name', 'slug'])->where('slug', $key->slug)->get();
-        $product_category_all =  $key->products()->latest()->paginate(8);
+        $product_category_all =  $key->products()->latest()->paginate(12);
 
         $produk_promo = product::take(16)->latest()->get();
 

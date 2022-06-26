@@ -40,13 +40,15 @@
                                 : {{ $produk_detail->productCategory->name
                                 }}</a>
                         </li>
-                        @if ($produk_detail->status_id != '')
-                        <li><a href="javascript:void(0)"><span>Status</span> : {{ $produk_detail->productStatus->name
-                                }}</a>
+                        @if ($produk_detail->status != 'nett')
+                        <li><a href="javascript:void(0)"><span>Status</span> : <span class="text-uppercase">{{
+                                    $produk_detail->status
+                                    }}</span></a>
                         </li>
                         @else
-                        <li><a href="javascript:void(0)"><span>Status</span> : {{ "Normal"
-                                }}</a>
+                        <li><a href="javascript:void(0)"><span>Status</span> : <span class="text-uppercase">{{
+                                    "Nett"
+                                    }}</span></a>
                         </li>
                         @endif
                     </ul>
@@ -327,7 +329,7 @@
             <div class="col-lg-12">
                 <div class="row">
                     @foreach ($produk_promo->take(12) as $item)
-                    @if ($item->status_id ==1)
+                    @if ($item->status =='promo')
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-20">
                         <div class="single-related-product d-flex">
                             <a href="{{ route('detail-produk.produkId',$item->slug) }}"><img
@@ -338,12 +340,12 @@
                                     }}</a>
                                 <div class="price">
                                     <h6>{{ $item->price }}</h6>
-                                    @if ($item->status_id !='')
+                                    @if ($item->status !='nett')
                                     <h6 class="l-through"
                                         style="color: #f44a40; position: absolute; top: 0px; left: 8px; margin: auto;">
                                         <span class="genric-btn danger circle"
                                             style="line-height: 12px; padding: 0px 8px; font-size: 7px; background: #f44a40; color: #fff">{{
-                                            $item->productStatus->name }}</span>
+                                            $item->status }}</span>
                                     </h6>
                                     @endif
                                     <h6 class="l-through">

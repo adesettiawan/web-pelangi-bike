@@ -66,6 +66,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
     <script src="{{ url('frontend-assets/js/gmaps.min.js') }}"></script>
     <script src="{{ url('frontend-assets/js/main.js') }}"></script>
+    @yield('script')
 </body>
 
 </html>

@@ -41,11 +41,12 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <div class="blog_left_sidebar" style="padding-top: 30px">
+                <div class="blog_left_sidebar" style="padding-top: 50px; padding-bottom: 50px;">
                     <article class="row blog_item">
+                        @if ($blogs->count() > 0)
                         @foreach ($blogs as $item)
                         <div class="col-md-4">
-                            <div class="blog_post" style="padding-top: 50px">
+                            <div class="blog_post">
                                 <img style="height: 230px; width: 100%" src="{{ Storage::url('blog/'.$item->image) }}"
                                     alt="blog-name">
                                 <div class="blog_details">
@@ -59,31 +60,20 @@
                             </div>
                         </div>
                         @endforeach
+                        @else
+                        <div class="col-md-12">
+                            <div>
+                                <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_ghfpce1h.json"
+                                    background="transparent" speed="1" style="width: 100%; height: 300px;" loop
+                                    autoplay></lottie-player>
+                            </div>
+                        </div>
+                        @endif
                     </article>
 
-                    <nav class="blog-pagination justify-content-start d-flex">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a href="#" class="page-link" aria-label="Previous">
-                                    <span aria-hidden="true">
-                                        <span class="lnr lnr-chevron-left"></span>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a href="#" class="page-link">1</a></li>
-                            <li class="page-item active"><a href="#" class="page-link">2</a></li>
-                            <li class="page-item"><a href="#" class="page-link">3</a></li>
-                            <li class="page-item"><a href="#" class="page-link">4</a></li>
-                            <li class="page-item"><a href="#" class="page-link">9</a></li>
-                            <li class="page-item">
-                                <a href="#" class="page-link" aria-label="Next">
-                                    <span aria-hidden="true">
-                                        <span class="lnr lnr-chevron-right"></span>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                    @if ($blogs->count() > 0)
+                    {{$blogs->links()}}
+                    @endif
                 </div>
             </div>
 
@@ -91,4 +81,8 @@
     </div>
 </section>
 <!--================Blog Area =================-->
+@endsection
+
+@section('script')
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 @endsection

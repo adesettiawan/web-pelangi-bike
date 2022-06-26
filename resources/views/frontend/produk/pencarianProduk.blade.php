@@ -23,6 +23,7 @@
             <!-- Start Best Seller -->
             <section class="lattest-product-area pb-40 category-list" style="padding-top: 90px">
                 <div class="row">
+                    @if ($products->count() > 0)
                     @foreach ($products as $item)
                     <!-- single product -->
                     <div class="col-lg-3 col-md-6">
@@ -32,12 +33,12 @@
                                 <h6>{{$item->name}}</h6>
                                 <div class="price">
                                     <h6>{{$item->price}}</h6>
-                                    @if ($item->status_id !='')
+                                    @if ($item->status !='nett')
                                     <h6 class="l-through"
                                         style="color: #f44a40; position: absolute;  top: 8px; left: 5px; margin: auto;">
                                         <span class="genric-btn danger circle"
                                             style="line-height: 28px; padding: 0px 15px; background: #f44a40;color: #fff">{{
-                                            $item->productStatus->name }}</span>
+                                            $item->status }}</span>
                                     </h6>
                                     @endif
                                     <h6 class="l-through">
@@ -62,33 +63,22 @@
                         </div>
                     </div>
                     @endforeach
+                    @else
+                    <div class="col-md-12">
+                        <div style="padding-top: 10px; padding-bottom: 90px">
+                            <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_ghfpce1h.json"
+                                background="transparent" speed="1" style="width: 100%; height: 300px;" loop autoplay>
+                            </lottie-player>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </section>
             <!-- End Best Seller -->
             <!-- Start pagination Bar -->
-            <nav class="blog-pagination justify-content-start d-flex">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a href="#" class="page-link" aria-label="Previous">
-                            <span aria-hidden="true">
-                                <span class="lnr lnr-chevron-left"></span>
-                            </span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">9</a></li>
-                    <li class="page-item">
-                        <a href="#" class="page-link" aria-label="Next">
-                            <span aria-hidden="true">
-                                <span class="lnr lnr-chevron-right"></span>
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            @if ($products->count() > 0)
+            {{$products->links()}}
+            @endif
             <!-- End pagination Bar -->
         </div>
     </div>
@@ -110,7 +100,7 @@
             <div class="col-lg-12">
                 <div class="row">
                     @foreach ($produk_promo->take(12) as $item)
-                    @if ($item->status_id ==1)
+                    @if ($item->status =='promo')
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-20">
                         <div class="single-related-product d-flex">
                             <a href="{{ route('detail-produk.produkId',$item->slug) }}"><img
@@ -121,12 +111,12 @@
                                     }}</a>
                                 <div class="price">
                                     <h6>{{ $item->price }}</h6>
-                                    @if ($item->status_id !='')
+                                    @if ($item->status !='nett')
                                     <h6 class="l-through"
-                                        style="color: #f44a40; position: absolute; top: 0px; left: 8px; margin: auto;">
+                                        style="color: #f44a40; position: absolute;  top: 8px; left: 5px; margin: auto;">
                                         <span class="genric-btn danger circle"
-                                            style="line-height: 12px; padding: 0px 8px; font-size: 7px; background: #f44a40; color: #fff">{{
-                                            $item->productStatus->name }}</span>
+                                            style="line-height: 28px; padding: 0px 15px; background: #f44a40;color: #fff">{{
+                                            $item->status }}</span>
                                     </h6>
                                     @endif
                                     <h6 class="l-through">
@@ -148,5 +138,8 @@
 </section>
 <!-- End related-product Area -->
 
+@endsection
 
+@section('script')
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 @endsection

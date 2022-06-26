@@ -85,7 +85,8 @@
 </section>
 <!-- end features Area --> --}}
 
-{{-- <!-- Start category Area -->
+{{--
+<!-- Start category Area -->
 <section class="category-area section_gap">
     <div class="container">
         <div class="row justify-content-center">
@@ -152,7 +153,7 @@
     </div>
 </section>
 <!-- End category Area --> --}}
-
+<section class="category-area" style="padding-top: 80px"></section>
 <!-- start product Area -->
 <section class="owl-carousel active-product-area section_gap">
     <!-- single product slide -->
@@ -170,7 +171,7 @@
             <div class="row">
                 @foreach ($produk_all->take(8) as $item)
                 <!-- single product -->
-                @if ($item->status_id == 2)
+                @if ($item->status == 'best seller')
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
                         <img class="img-fluid" src="{{ Storage::url('produk/'.$item->image) }}" alt="">
@@ -178,12 +179,12 @@
                             <h6>{{ $item->name }}</h6>
                             <div class="price">
                                 <h6>{{ $item->price }}</h6>
-                                @if ($item->status_id !='')
+                                @if ($item->status !='nett')
                                 <h6 class="l-through"
                                     style="color: #f44a40; position: absolute;  top: 8px; left: 5px; margin: auto;">
                                     <span class="genric-btn danger circle"
                                         style="line-height: 28px; padding: 0px 15px; background: #f44a40;color: #fff">{{
-                                        $item->productStatus->name }}</span>
+                                        $item->status }}</span>
                                 </h6>
                                 @endif
                                 <h6 class="l-through">
@@ -234,12 +235,12 @@
                             <h6>{{ $item->name }}</h6>
                             <div class="price">
                                 <h6>{{ $item->price }}</h6>
-                                @if ($item->status_id !='')
+                                @if ($item->status !='nett')
                                 <h6 class="l-through"
                                     style="color: #f44a40; position: absolute;  top: 8px; left: 5px; margin: auto;">
                                     <span class="genric-btn danger circle"
                                         style="line-height: 28px; padding: 0px 15px; background: #f44a40;color: #fff">{{
-                                        $item->productStatus->name }}</span>
+                                        $item->status }}</span>
                                 </h6>
                                 @endif
                                 <h6 class="l-through">
@@ -286,7 +287,7 @@
             <div class="col-lg-12">
                 <div class="row">
                     @foreach ($produk_all->take(12) as $item)
-                    @if ($item->status_id ==1)
+                    @if ($item->status == 'promo')
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-20">
                         <div class="single-related-product d-flex">
                             <a href="{{ route('detail-produk.produkId',$item->slug) }}"><img
@@ -297,12 +298,12 @@
                                     }}</a>
                                 <div class="price">
                                     <h6>{{ $item->price }}</h6>
-                                    @if ($item->status_id !='')
+                                    @if ($item->status !='nett')
                                     <h6 class="l-through"
                                         style="color: #f44a40; position: absolute; top: 0px; left: 8px; margin: auto;">
                                         <span class="genric-btn danger circle"
                                             style="line-height: 12px; padding: 0px 8px; font-size: 7px; background: #f44a40; color: #fff">{{
-                                            $item->productStatus->name }}</span>
+                                            $item->status }}</span>
                                     </h6>
                                     @endif
                                     <h6 class="l-through">
