@@ -12,7 +12,7 @@
                     <p><i class="fa fa-map-marker"></i>&nbsp; Jl. Ratu Dibalau, Way Kandis, Kec. Tj. Senang, Kota Bandar
                         Lampung, Lampung 35143.</p>
                     <p><i class="fa fa-whatsapp"></i>&nbsp; <a
-                            href="https://api.whatsapp.com/send?phone=088129604786&text=Hallo%2C%20Saya%20ingin%20memesan%20sepeda%20di%20Pelangi%20Bike.%20Untuk%20pemesanannya%20bagaimana%20ya%3F"
+                            href="https://api.whatsapp.com/send?phone=628129604786&text=Hallo%2C%20Saya%20ingin%20memesan%20sepeda%20di%20Pelangi%20Bike.%20Untuk%20pemesanannya%20bagaimana%20ya%3F"
                             target="_blank" style="color: #777">088129604786</a></p>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                     <div class="footer-social d-flex align-items-center">
                         <a href="https://www.instagram.com/pelangibike_lampung/" target="_blank"><i
                                 class="fa fa-instagram"></i></a>
-                        <a href="https://api.whatsapp.com/send?phone=088129604786&text=Hallo%2C%20Saya%20ingin%20memesan%20sepeda%20di%20Pelangi%20Bike.%20Untuk%20pemesanannya%20bagaimana%20ya%3F"
+                        <a href="https://api.whatsapp.com/send?phone=628129604786&text=Hallo%2C%20Saya%20ingin%20memesan%20sepeda%20di%20Pelangi%20Bike.%20Untuk%20pemesanannya%20bagaimana%20ya%3F"
                             target="_blank"><i class="fa fa-whatsapp"></i></a>
                         <a href="javascript:void(0)" target="_blank"><i class="fa fa-facebook"></i></a>
                         <a href="javascript:void(0)" target="_blank"><i class="fa fa-twitter"></i></a>

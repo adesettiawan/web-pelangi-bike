@@ -40,9 +40,15 @@
                                 : {{ $produk_detail->productCategory->name
                                 }}</a>
                         </li>
+                        @if ($produk_detail->status_id != '')
                         <li><a href="javascript:void(0)"><span>Status</span> : {{ $produk_detail->productStatus->name
                                 }}</a>
                         </li>
+                        @else
+                        <li><a href="javascript:void(0)"><span>Status</span> : {{ "Normal"
+                                }}</a>
+                        </li>
+                        @endif
                     </ul>
                     <p>{!! Str::limit($produk_detail->description,
                         160) !!}</p>
