@@ -19,7 +19,7 @@
         <div class="tab-content tab-transparent-content">
             <div class="tab-pane fade show active" id="business-1" role="tabpanel" aria-labelledby="business-tab">
                 <div class="row">
-                    <div class="col-xl-3 col-lg-6 col-sm-6 grid-margin stretch-card">
+                    <div class="col-xl-4 col-lg-6 col-sm-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body text-center">
                                 <h5 class="mb-2 text-dark font-weight-normal">Jumlah Produk</h5>
@@ -30,7 +30,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-6 col-sm-6 grid-margin stretch-card">
+                    <div class="col-xl-4 col-lg-6 col-sm-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body text-center">
                                 <h5 class="mb-2 text-dark font-weight-normal">Kategori Produk</h5>
@@ -41,7 +41,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-6 col-sm-6 grid-margin stretch-card">
+                    <div class="col-xl-4 col-lg-6 col-sm-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body text-center">
                                 <h5 class="mb-2 text-dark font-weight-normal">Blogs</h5>
