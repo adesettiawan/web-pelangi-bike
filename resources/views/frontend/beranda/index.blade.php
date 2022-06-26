@@ -85,7 +85,7 @@
 </section>
 <!-- end features Area --> --}}
 
-<!-- Start category Area -->
+{{-- <!-- Start category Area -->
 <section class="category-area section_gap">
     <div class="container">
         <div class="row justify-content-center">
@@ -151,7 +151,7 @@
         </div>
     </div>
 </section>
-<!-- End category Area -->
+<!-- End category Area --> --}}
 
 <!-- start product Area -->
 <section class="owl-carousel active-product-area section_gap">
