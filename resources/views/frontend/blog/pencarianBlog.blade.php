@@ -46,7 +46,8 @@
                         @foreach ($blogs as $item)
                         <div class="col-md-4">
                             <div class="blog_post">
-                                <img src="{{ Storage::url('blog/'.$item->image) }}" alt="blog-name">
+                                <img style="height: 230px; width: 100%" src="{{ Storage::url('blog/'.$item->image) }}"
+                                    alt="blog-name">
                                 <div class="blog_details">
                                     <a href="{{ route('blog-details.blogId',$item->slug) }}">
                                         <h2>{{Str::limit($item->title,55,'...')}}</h2>
