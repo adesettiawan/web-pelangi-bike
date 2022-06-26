@@ -22,6 +22,6 @@ class DashboardController extends Controller
         $category = category::get();
         $blogs = blog::get();
 
-        return view('backend.beranda.index', compact('data', 'products', 'category', 'status', 'blogs'));
+        return view('backend.beranda.index', compact('data', 'products', 'category', 'blogs'));
     }
 }
