@@ -34,13 +34,14 @@
                     <th class="text-center">Harga</th>
                     <th class="text-center">Gambar</th>
                     <th class="text-center">Kategori</th>
-                    <th class="text-center">status</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Deskripsi</th>
                     @foreach ($prdk as $i)
                     @if ($i->status_name == 'diskon' || $i->status_name == 'promo')
                     <th class="text-center">Diskon</th>
                     @endif
                     @endforeach
-                    <th class="text-center">ubah</th>
+                    <th class="text-center">Ubah</th>
                     <th class="text-center">Hapus</th>
                 </tr>
             </thead>
@@ -59,6 +60,8 @@
                     <td class="text-center"><a href="" class="btn btn-success btn-sm mr-2">Diskon</a>
                     </td>
                     @endif
+                    <td class="text-left" style="white-space: pre-line; word-break: break-all">{{ $i->description }}
+                    </td>
                     <td class="text-center">
                         <form action="{{ route('produk.edit', $i->slug) }}" method="get">
                             @csrf
