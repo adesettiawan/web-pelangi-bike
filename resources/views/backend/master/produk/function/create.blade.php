@@ -58,11 +58,11 @@
                         </div>
                         <div class="form-group">
                             <label for="category">Status :</label>
-                            <select class="form-control" id="status" name="status" required>
+                            <select class="form-control" id="status" name="status">
                                 <option class="form-control" readonly>-- Pilih Status --</option>
-                                @foreach ($sts as $i)
-                                    <option class="form-control" value="{{ $i->id }}">{{ $i->name }}</option>
-                                @endforeach
+                                    <option class="form-control" value="nett">nett</option>
+                                    <option class="form-control" value="promo">promo</option> 
+                                    <option class="form-control" value="best seller">best seller</option> 
                             </select>
                         </div>
                         <div class="form-group">

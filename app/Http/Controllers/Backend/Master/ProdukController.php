@@ -26,8 +26,7 @@ class ProdukController extends Controller
 
         $prdk = DB::table('categories')
             ->join('products', 'categories.id', '=', 'products.category_id')
-            ->join('statuses', 'products.status_id', '=', 'statuses.id')
-            ->select('products.*', 'categories.name as category_name', 'statuses.name as status_name')
+            ->select('products.*', 'categories.name as category_name')
             ->get();
 
 
@@ -47,9 +46,8 @@ class ProdukController extends Controller
         $data['url'] = URL::current();
 
         $ktg = DB::table('categories')->orderBy('id', 'desc')->get();
-        $sts = DB::table('statuses')->get();
 
-        return view('backend.master.produk.function.create', compact('data', 'ktg', 'sts'));
+        return view('backend.master.produk.function.create', compact('data', 'ktg'));
     }
 
     /**
@@ -66,7 +64,7 @@ class ProdukController extends Controller
         $prd->phone = $request->phone;
         $prd->description = $request->description;
         $prd->category_id = $request->category;
-        $prd->status_id = $request->status;
+        $prd->status = $request->status;
         $prd->slug = Str::slug($request->name, '-');
         if ($request->file('image')) {
             $file = $request->file('image');
@@ -104,15 +102,9 @@ class ProdukController extends Controller
         $data['url'] = URL::current();
 
         $ktg = DB::table('categories')->orderBy('id', 'desc')->get();
-        $sts = DB::table('statuses')->get();
-        $prdk = DB::table('categories')
-            ->where('products.slug', $slug)
-            ->join('products', 'categories.id', '=', 'products.category_id')
-            ->join('statuses', 'products.status_id', '=', 'statuses.id')
-            ->select('products.*', 'categories.name as category_name', 'statuses.name as status_name')
-            ->first();
+        $prdk = product::where('slug', $slug)->first();
 
-        return view('backend.master.produk.function.edit', compact('data', 'ktg', 'sts', 'prdk'));
+        return view('backend.master.produk.function.edit', compact('data', 'ktg', 'prdk'));
     }
 
     /**
@@ -130,7 +122,7 @@ class ProdukController extends Controller
         $prd->phone = $request->phone;
         $prd->description = $request->description;
         $prd->category_id = $request->category;
-        $prd->status_id = $request->status;
+        $prd->status = $request->status;
         $prd->slug = Str::slug($request->name, '-');
         $dest = storage_path('/app/public/produk/' . $prd->image);
         if (!is_null($request->file('image'))) {

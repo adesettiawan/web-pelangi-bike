@@ -5,9 +5,8 @@
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <a class="navbar-brand logo_h" href="{{ route('beranda') }}"><img
                         src="{{ url('frontend-assets/img/logo3.png') }}" alt=""></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -20,15 +19,19 @@
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                 aria-haspopup="true" aria-expanded="false">Sepeda</a>
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link"
-                                        href="{{ route('product-category.id','sepeda-anak') }}">Sepeda Anak</a></li>
-                                <li class="nav-item"><a class="nav-link"
-                                        href="{{ route('product-category.id','sepeda-gunung') }}">Sepeda Gunung</a></li>
-                                <li class="nav-item"><a class="nav-link"
-                                        href="{{ route('product-category.id','sepeda-lipat') }}">Sepeda Lipat</a></li>
-                                <li class="nav-item"><a class="nav-link"
-                                        href="{{ route('product-category.id','sepeda-listrik') }}">Sepeda Listrik</a>
-                                </li>
+                                @php
+                                    $a = App\Models\category::Select('*')->get();
+                                    $c = App\Models\product::Select('*')->get();
+                                @endphp
+
+                                @foreach ($a as $b)
+                                    @if ($c->where('category_id', $b->id)->count() > 0)
+                                        <li class="nav-item"><a class="nav-link"
+                                                href="{{ route('product-category.id', $b->slug) }}">{{ $b->name }}</a>
+                                        </li>
+                                    @endif
+                                @endforeach
+
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('blogs') }}">Blogs</a></li>

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\blog;
 use App\Models\category;
 use App\Models\product;
-use App\Models\status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 
@@ -21,9 +20,8 @@ class DashboardController extends Controller
 
         $products = product::get();
         $category = category::get();
-        $status = status::get();
         $blogs = blog::get();
 
-        return view('backend.beranda.index', compact('data', 'products', 'category', 'status', 'blogs'));
+        return view('backend.beranda.index', compact('data', 'products', 'category', 'blogs'));
     }
 }
