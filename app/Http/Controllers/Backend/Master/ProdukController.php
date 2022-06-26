@@ -122,7 +122,7 @@ class ProdukController extends Controller
         $prd->phone = $request->phone;
         $prd->description = $request->description;
         $prd->category_id = $request->category;
-        $prd->status_id = $request->status;
+        $prd->status = $request->status;
         $prd->slug = Str::slug($request->name, '-');
         $dest = storage_path('/app/public/produk/' . $prd->image);
         if (!is_null($request->file('image'))) {
