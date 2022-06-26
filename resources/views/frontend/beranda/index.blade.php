@@ -95,8 +95,7 @@
                         <div class="single-deal">
                             <div class="overlay"></div>
                             <img class="img-fluid w-100" src="{{ url('frontend-assets/img/category/c1.jpg') }}" alt="">
-                            <a href="{{ url('frontend-assets/img/category/c1.jpg') }}" class="img-pop-up"
-                                target="_blank">
+                            <a href="{{ route('product-category.id','sepeda-listrik') }}">
                                 <div class="deal-details">
                                     <h6 class="deal-title">Sepeda Listrik</h6>
                                 </div>
@@ -107,8 +106,7 @@
                         <div class="single-deal">
                             <div class="overlay"></div>
                             <img class="img-fluid w-100" src="{{ url('frontend-assets/img/category/c2.jpg') }}" alt="">
-                            <a href="{{ url('frontend-assets/img/category/c2.jpg') }}" class="img-pop-up"
-                                target="_blank">
+                            <a href="{{ route('product-category.id','sepeda-lipat') }}">
                                 <div class="deal-details">
                                     <h6 class="deal-title">Sepeda Lipat</h6>
                                 </div>
@@ -119,10 +117,9 @@
                         <div class="single-deal">
                             <div class="overlay"></div>
                             <img class="img-fluid w-100" src="{{ url('frontend-assets/img/category/c3.jpg') }}" alt="">
-                            <a href="{{ url('frontend-assets/img/category/c3.jpg') }}" class="img-pop-up"
-                                target="_blank">
+                            <a href="{{ route('product-category.id','sepeda-anak') }}">
                                 <div class="deal-details">
-                                    <h6 class="deal-title">Sepeda Keranjang</h6>
+                                    <h6 class="deal-title">Sepeda Anak</h6>
                                 </div>
                             </a>
                         </div>
@@ -131,8 +128,7 @@
                         <div class="single-deal">
                             <div class="overlay"></div>
                             <img class="img-fluid w-100" src="{{ url('frontend-assets/img/category/c4.jpg') }}" alt="">
-                            <a href="{{ url('frontend-assets/img/category/c4.jpg') }}" class="img-pop-up"
-                                target="_blank">
+                            <a href="{{ route('product-category.id','sepeda-bmx') }}">
                                 <div class="deal-details">
                                     <h6 class="deal-title">Sepeda BMX</h6>
                                 </div>
@@ -145,7 +141,7 @@
                 <div class="single-deal">
                     <div class="overlay"></div>
                     <img class="img-fluid w-100" src="{{ url('frontend-assets/img/category/c5.jpg') }}" alt="">
-                    <a href="{{ url('frontend-assets/img/category/c5.jpg') }}" class="img-pop-up" target="_blank">
+                    <a href="{{ route('product-category.id','sepeda-gunung') }}">
                         <div class="deal-details">
                             <h6 class="deal-title">Sepeda Gunung</h6>
                         </div>
