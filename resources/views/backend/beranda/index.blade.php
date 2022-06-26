@@ -41,18 +41,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3  col-lg-6 col-sm-6 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <h5 class="mb-2 text-dark font-weight-normal">Status Produk</h5>
-                                <div
-                                    class="dashboard-progress dashboard-progress-3 d-flex align-items-center justify-content-center item-parent">
-
-                                </div>
-                                <h2 class="mb-0 font-weight-bold mt-2 text-dark">{{ $status->count() }}</h2>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-xl-3 col-lg-6 col-sm-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body text-center">
