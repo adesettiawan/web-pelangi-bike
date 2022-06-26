@@ -34,7 +34,7 @@ Route::prefix('detail-produk')->group(function () {
     Route::get('/{slug}', [FrontendProdukController::class, 'productDetails'])->name('detail-produk.produkId');
 });
 
-Route::get('produk/{key:slug}', [KategoriProdukController::class, 'productByCategory'])->name('product-category.id');
+Route::get('products/{key:slug}', [KategoriProdukController::class, 'productByCategory'])->name('product-category.id');
 
 Route::get('blogs', [FrontendBlogController::class, 'index'])->name('blogs');
 
