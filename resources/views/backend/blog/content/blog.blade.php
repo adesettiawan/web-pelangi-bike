@@ -45,7 +45,7 @@
                     <td class="text-left" style="white-space: pre-line; word-break: break-all">{{ $i->title }}</td>
                     <td class="text-center"><embed src="{{ asset('storage/blog/' . $i->image . '') }}"
                             style="max-width:100px; max-height: 50px" /></td>
-                    <td class="text-left" style="white-space: pre-line; word-break: break-all">{{ $i->content }}</td>
+                    <td class="text-left" style="white-space: pre-line; word-break: break-all">{!! $i->content !!}</td>
                     <td class="text-left">
                         <form action="{{ route('blog.edit', $i->slug) }}" method="get">
                             @csrf

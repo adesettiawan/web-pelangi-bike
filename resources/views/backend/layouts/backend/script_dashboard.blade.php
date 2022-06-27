@@ -4,11 +4,15 @@
 <script src="{{ asset('backend-assets/js/off-canvas.js') }}"></script>
 <script src="{{ asset('backend-assets/js/hoverable-collapse.js') }}"></script>
 <script src="{{ asset('backend-assets/js/misc.js') }}"></script>
-<!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
 </script>
+<script src="https://cdn.tiny.cloud/1/1riobu2jkux567x3y645edre4l1jde3qh2q74jnotemh9qt4/tinymce/6/tinymce.min.js"
+    referrerpolicy="1riobu2jkux567x3y645edre4l1jde3qh2q74jnotemh9qt4"></script>
 <script type="text/javascript" charset="utf8" src="https:/cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js">
+    < script src = "/path/to/tinymce.min.js" >
+</script>
+
 </script>
 <script>
     $(document).ready(function() {
@@ -115,4 +119,18 @@
             prvwimg.src = URL.createObjectURL(file)
         }
     }
+</script>
+<script>
+    tinymce.init({
+        selector: 'textarea#description', // Replace this CSS selector to match the placeholder element for TinyMCE
+        plugins: 'code table lists',
+        toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
+    });
+</script>
+<script>
+    tinymce.init({
+        selector: 'textarea#content', // Replace this CSS selector to match the placeholder element for TinyMCE
+        plugins: 'code table lists',
+        toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
+    });
 </script>

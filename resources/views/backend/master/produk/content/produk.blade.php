@@ -53,7 +53,7 @@
                             <td class="text-center">{{ $i->category_name }}</td>
                             <td class="text-center">{{ $i->status }}</td>
                             <td class="text-left" style="white-space: pre-line; word-break: break-all">
-                                {{ $i->description }}
+                                {!! $i->description !!}
                             </td>
                             @if ($i->status == 'promo')
                                 <td class="text-center"><a href="" class="btn btn-success btn-sm mr-2">Diskon</a>
