@@ -27,17 +27,18 @@
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Tambah Slider</h4>
-                    <form class="forms-sample" method="POST" action="{{ route('slider.store') }}"
+                    <h4 class="card-title">Ubah Slider</h4>
+                    <form class="forms-sample" method="POST" action="{{ route('slider.update', $sld->id) }}"
                         enctype="multipart/form-data">
                         @csrf
+                        @method('PATCH')
                         <div class="form-group">
                             <label for="image">Gambar :</label><br>
-                            <img id="prvwimg" src="{{ asset('backend-assets/images/default-image.jpg') }}"
-                                alt="your image" class="mb-4" style="max-width:300px;" />
+                            <img id="prvwimg" src="{{ asset('storage/slider/' . $sld->image) }}" alt="your image"
+                                class="mb-4" style="max-width:300px;" />
                             <div class="input-group col-xs-12">
                                 <input type="file" accept="image/*" class="form-control" style="display:none;"
-                                    id="image" name="image" placeholder="image" required>
+                                    id="image" name="image" placeholder="image" value={{ $sld->image }}required>
                                 <span class="input-group-append">
                                     <button class="btn btn-primary" id="upfile" type="button">Upload</button>
                                 </span>
@@ -45,7 +46,7 @@
                         </div>
                         <div class="form-group">
                             <label for="description">Deskripsi :</label>
-                            <textarea class="form-control" id="description" name="description" rows="4"></textarea>
+                            <textarea class="form-control" id="description" name="description" rows="4">{!! $sld->description !!}</textarea>
                         </div>
                         <button type="submit" class="btn btn-success mr-2">Simpan</button>
                         <a href="{{ route('slider.index') }}" class="btn btn-danger">Cancel</a>

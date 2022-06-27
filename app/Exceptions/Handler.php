@@ -50,7 +50,7 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         if ($exception instanceof QueryException) {
-            return redirect()->back()->withError('Data sudah terdaftar!')->withInput();
+            return redirect()->back()->withError('Data Invalid!')->withInput();
         }
 
         return parent::render($request, $exception);

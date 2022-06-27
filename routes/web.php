@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\Master\ProdukController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\Master\SliderController;
 use App\Http\Controllers\Backend\Master\KategoriController;
 use App\Http\Controllers\Frontend\BlogController as FrontendBlogController;
 use App\Http\Controllers\Frontend\ContactController;
@@ -64,6 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
         'produk' => ProdukController::class,
         'kategori' => KategoriController::class,
         'blog' => BlogController::class,
+        'slider' => SliderController::class,
     ]);
 });
 
