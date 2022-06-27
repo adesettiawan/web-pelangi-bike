@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('phone')->default('08129604786');
             $table->string('category_id')->nullable();
             $table->string('status');
-            $table->string('discount')->nullable();
+            $table->string('discount')->default('Rp 0');
             $table->string('image')->nullable();
             $table->longText('description')->nullable();
             $table->timestamps();

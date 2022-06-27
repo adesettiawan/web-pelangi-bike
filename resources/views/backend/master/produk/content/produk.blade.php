@@ -24,6 +24,7 @@
 @stop
 @section('main-content')
     <div class="card-body">
+        @include('backend.master.produk.content.modal')
         <div class="table-responsive">
             <a href="{{ route('produk.create') }}" class="btn btn-primary mb-4">Tambah</a>
             <table class=" table display cell-border" id="dataTable" width="100%" cellspacing="0" data-page-length="10">
@@ -56,7 +57,7 @@
                                 {!! $i->description !!}
                             </td>
                             @if ($i->status == 'promo')
-                                <td class="text-center"><a href="" class="btn btn-success btn-sm mr-2">Diskon</a>
+                                <td class="text-center"><button type="button" data-toggle="modal" data-target="#produkmodal{{$i->id}}" class="btn btn-success btn-sm mr-2">Diskon</button>
                                 </td>
                             @else
                                 <td class="text-center"><button type="button" class="btn btn-danger btn-sm mr-2" disabled>
