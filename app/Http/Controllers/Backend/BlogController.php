@@ -111,7 +111,7 @@ class BlogController extends Controller
         $blg->title = $request->title;
         $blg->content = $request->content;
         $blg->slug = Str::slug($request->title, '-');
-        $dest = storage_path('/app/public/blog/' . $blg->image);
+        $dest = storage_path('app/public/blog/' . $blg->image);
         if (!is_null($request->file('image'))) {
             if (File::exists($dest)) {
                 File::delete($dest);
@@ -139,7 +139,7 @@ class BlogController extends Controller
     public function destroy($id)
     {
         $prd = blog::where('id', $id)->first();
-        $dest = storage_path('/app/public/blog/' . $prd->image);
+        $dest = storage_path('app/public/blog/' . $prd->image);
 
         if (File::exists($dest)) {
             File::delete($dest);

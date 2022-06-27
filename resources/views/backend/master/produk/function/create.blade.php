@@ -38,14 +38,13 @@
                         </div>
                         <div class="form-group">
                             <label for="price">Harga :</label>
-                            <input type="text" class="form-control" name="price" id="price"
-                                pattern="^\Rp\d{1,3}(,\d{3})*(\.\d+)?$" data-type="currency"
+                            <input type="text" class="form-control" name="price" id="price" data-type="currency"
                                 placeholder="Harga Produk" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">Nomor Handphone :</label>
-                            <input type="text" class="form-control" id="phone"
-                                name="phone" value="08129604786" placeholder="Nomor Handphone" required>
+                            <input type="text" class="form-control" id="phone" name="phone" value="08129604786"
+                                placeholder="Nomor Handphone" required>
                         </div>
                         <div class="form-group">
                             <label for="category">Kategori :</label>
@@ -60,9 +59,9 @@
                             <label for="category">Status :</label>
                             <select class="form-control" id="status" name="status">
                                 <option class="form-control" readonly>-- Pilih Status --</option>
-                                    <option class="form-control" value="nett">nett</option>
-                                    <option class="form-control" value="promo">promo</option> 
-                                    <option class="form-control" value="best seller">best seller</option> 
+                                <option class="form-control" value="nett">nett</option>
+                                <option class="form-control" value="promo">promo</option>
+                                <option class="form-control" value="best seller">best seller</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -71,7 +70,7 @@
                                 alt="your image" class="mb-4" style="max-width:300px;" />
                             <div class="input-group col-xs-12">
                                 <input type="file" accept="image/*" class="form-control" style="display:none;"
-                                    id="image" name ="image" placeholder="image" required>
+                                    id="image" name="image" placeholder="image" required>
                                 <span class="input-group-append">
                                     <button class="btn btn-primary" id="upfile" type="button">Upload</button>
                                 </span>

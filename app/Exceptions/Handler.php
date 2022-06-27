@@ -47,12 +47,12 @@ class Handler extends ExceptionHandler
      * @param  \Throwable  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Throwable $exception)
-    {
-        if ($exception instanceof QueryException) {
-            return redirect()->back()->withError('Data Invalid!')->withInput();
-        }
+    // public function render($request, Throwable $exception)
+    // {
+    //     if ($exception instanceof QueryException) {
+    //         return redirect()->back()->withError('Data Invalid!')->withInput();
+    //     }
 
-        return parent::render($request, $exception);
-    }
+    //     return parent::render($request, $exception);
+    // }
 }

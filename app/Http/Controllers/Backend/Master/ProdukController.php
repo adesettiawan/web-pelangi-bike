@@ -117,27 +117,33 @@ class ProdukController extends Controller
     public function update(Request $request, $id)
     {
         $prd = product::find($id);
-        $prd->name = $request->name;
-        $prd->price = $request->price;
-        $prd->phone = $request->phone;
-        $prd->description = $request->description;
-        $prd->category_id = $request->category;
-        $prd->status = $request->status;
-        $prd->slug = Str::slug($request->name, '-');
-        $dest = storage_path('/app/public/produk/' . $prd->image);
-        if (!is_null($request->file('image'))) {
-            if (File::exists($dest)) {
-                File::delete($dest);
-            }
+        if (is_null($request->input('discount'))) {
+            $prd->name = $request->name;
+            $prd->price = $request->price;
+            $prd->phone = $request->phone;
+            $prd->description = $request->description;
+            $prd->category_id = $request->category;
+            $prd->status = $request->status;
+            $prd->slug = Str::slug($request->name, '-');
+            $dest = storage_path('app/public/produk/' . $prd->image);
+            if (!is_null($request->file('image'))) {
+                if (File::exists($dest)) {
+                    File::delete($dest);
+                }
 
-            if ($request->file('image')) {
-                $file = $request->file('image');
-                $filename = time() . '.' . $file->extension();
-                $filePath = storage_path() . '/app/public/produk';
-                $file->move($filePath, $filename);
-                $prd->image = $filename;
+                if ($request->file('image')) {
+                    $file = $request->file('image');
+                    $filename = time() . '.' . $file->extension();
+                    $filePath = storage_path() . '/app/public/produk';
+                    $file->move($filePath, $filename);
+                    $prd->image = $filename;
+                }
             }
         }
+        if (!is_null($request->discount)) {
+            $prd->discount = $request->discount;
+        }
+
         $prd->update();
 
         return redirect()->route('produk.index')->with('success', 'Data berhasil diubah');
@@ -152,7 +158,7 @@ class ProdukController extends Controller
     public function destroy($id)
     {
         $prd = DB::table('products')->where('id', $id)->first();
-        $dest = storage_path('/app/public/produk/' . $prd->image);
+        $dest = storage_path('app/public/produk/' . $prd->image);
 
         if (File::exists($dest)) {
             File::delete($dest);

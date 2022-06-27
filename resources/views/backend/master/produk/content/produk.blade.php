@@ -33,6 +33,7 @@
                         <th class="text-center">No</th>
                         <th class="text-center">Nama</th>
                         <th class="text-center">Harga</th>
+                        <th class="text-center">Harga Diskon</th>
                         <th class="text-center">Gambar</th>
                         <th class="text-center">Kategori</th>
                         <th class="text-center">Status</th>
@@ -48,7 +49,8 @@
                         <tr>
                             <td class="text-center">{{ $no++ }}</td>
                             <td class="text-center">{{ $i->name }}</td>
-                            <td class="text-center">{{ $i->price }}</td>
+                            <td class="text-center">{{ $i->price}}</td>
+                            <td class="text-center">{{ $i->discount }}</td>
                             <td class="text-center"><embed src="{{ asset('storage/produk/' . $i->image . '') }}"
                                     style="max-width:100px; max-height: 50px" /></td>
                             <td class="text-center">{{ $i->category_name }}</td>
@@ -57,7 +59,9 @@
                                 {!! $i->description !!}
                             </td>
                             @if ($i->status == 'promo')
-                                <td class="text-center"><button type="button" data-toggle="modal" data-target="#produkmodal{{$i->id}}" class="btn btn-success btn-sm mr-2">Diskon</button>
+                                <td class="text-center"><button type="button" data-toggle="modal"
+                                        data-target="#produkmodal{{ $i->id }}"
+                                        class="btn btn-success btn-sm mr-2">Diskon</button>
                                 </td>
                             @else
                                 <td class="text-center"><button type="button" class="btn btn-danger btn-sm mr-2" disabled>

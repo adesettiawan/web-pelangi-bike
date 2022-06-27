@@ -106,7 +106,7 @@ class SliderController extends Controller
     {
         $sld = slider::find($id);
         $sld->description = $request->description;
-        $dest = storage_path('/app/public/slider/' . $sld->image);
+        $dest = storage_path('app/public/slider/' . $sld->image);
         if (!is_null($request->file('image'))) {
             if (File::exists($dest)) {
                 File::delete($dest);
@@ -135,7 +135,7 @@ class SliderController extends Controller
     public function destroy($id)
     {
         $prd = DB::table('sliders')->where('id', $id)->first();
-        $dest = storage_path('/app/public/slider/' . $prd->image);
+        $dest = storage_path('app/public/slider/' . $prd->image);
 
         if (File::exists($dest)) {
             File::delete($dest);
