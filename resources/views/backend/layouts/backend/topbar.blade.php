@@ -31,12 +31,12 @@
                     </div>
                     <div class="p-2">
                         <h5 class="dropdown-header text-uppercase pl-2 text-dark">Pengaturan</h5>
-                        <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="#">
+                        {{-- <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="#">
                             <span>Profile</span>
                             <span class="p-0">
                                 <i class="mdi mdi-account-outline ml-1"></i>
                             </span>
-                        </a>
+                        </a> --}}
                         <a class="dropdown-item py-1 d-flex align-items-center justify-content-between"
                             href="{{ route('logout') }}">
                             <span>Log Out</span>
@@ -45,7 +45,7 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item dropdown">
+            {{-- <li class="nav-item dropdown">
                 <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
                     data-toggle="dropdown">
                     <i class="mdi mdi-bell-outline"></i>
@@ -93,7 +93,7 @@
                     <div class="dropdown-divider"></div>
                     <h6 class="p-3 mb-0 text-center">See all notifications</h6>
                 </div>
-            </li>
+            </li> --}}
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
             data-toggle="offcanvas">
