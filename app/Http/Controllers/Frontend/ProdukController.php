@@ -9,6 +9,20 @@ use Illuminate\Support\Facades\URL;
 
 class ProdukController extends Controller
 {
+    public function index()
+    {
+        $data['title'] = 'Pelangi Bike';
+        $data['intro'] = 'Pelangi Bike';
+        $data['type'] = 'Pelangi Bike';
+        $data['url'] = URL::current();
+
+        $products = product::latest()->paginate(12)->withQueryString();
+
+        $produk_promo = product::take(16)->latest()->get();
+
+        return view('frontend.produk.index', compact('data', 'products', 'produk_promo'));
+    }
+
     public function searchProducts(Request $request)
     {
         $data['title'] = 'Pelangi Bike';

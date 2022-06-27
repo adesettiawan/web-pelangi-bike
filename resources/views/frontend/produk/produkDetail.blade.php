@@ -21,19 +21,24 @@
     <div class="container">
         <div class="row s_product_inner">
             <div class="col-lg-6">
-                <div class="s_Product_carousel">
+                <div class="">
                     <div class="single-prd-item">
-                        <img class="img-fluid" src="{{ Storage::url('produk/'.$produk_detail->image) }}" alt="">
-                    </div>
-                    <div class="single-prd-item">
-                        <img class="img-fluid" src="{{ Storage::url('produk/'.$produk_detail->image) }}" alt="">
+                        <img style="width: 100%" class="img-fluid"
+                            src="{{ Storage::url('produk/'.$produk_detail->image) }}" alt="">
                     </div>
                 </div>
             </div>
             <div class="col-lg-5 offset-lg-1">
                 <div class="s_product_text">
                     <h3>{{ $produk_detail->name }}</h3>
+                    @if ($produk_detail->status =='promo' && $produk_detail->discount !='Rp 0')
+                    <h2 style="padding-top: 15px;">{{ $produk_detail->discount }}</h2>
+                    <h6 class="l-through" style="text-decoration: line-through; padding-bottom: 22px; color: #cccccc">
+                        {{
+                        $produk_detail->price }}</h6>
+                    @else
                     <h2 style="padding-top: 15px; padding-bottom: 15px;">{{ $produk_detail->price }}</h2>
+                    @endif
                     <ul class="list">
                         <li><a class="active"
                                 href="{{ route('product-category.id',$produk_detail->productCategory->slug) }}"><span>Kategori</span>
@@ -85,7 +90,7 @@
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade  show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <p>{{$produk_detail->description}}</p>
+                <p>{!! $produk_detail->description !!}</p>
             </div>
 
             {{-- <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -333,18 +338,23 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-20">
                         <div class="single-related-product d-flex">
                             <a href="{{ route('detail-produk.produkId',$item->slug) }}"><img
-                                    style="width: 75px; border-radius: 8px;"
+                                    style="width: 100px; border-radius: 8px;"
                                     src="{{ Storage::url('produk/'.$item->image) }}" alt=""></a>
                             <div class="desc">
                                 <a href="{{ route('detail-produk.produkId',$item->slug) }}" class="title">{{ $item->name
                                     }}</a>
                                 <div class="price">
+                                    @if ($item->status =='promo' && $item->discount !='Rp 0')
+                                    <h6>{{ $item->discount }}</h6>
+                                    <h6 class="l-through" style="text-decoration: line-through;">{{ $item->price }}</h6>
+                                    @else
                                     <h6>{{ $item->price }}</h6>
+                                    @endif
                                     @if ($item->status !='nett')
                                     <h6 class="l-through"
-                                        style="color: #f44a40; position: absolute; top: 0px; left: 8px; margin: auto;">
+                                        style="color: #f44a40; position: absolute; top: 6px; left: 8px; margin: auto;">
                                         <span class="genric-btn danger circle"
-                                            style="line-height: 12px; padding: 0px 8px; font-size: 7px; background: #f44a40; color: #fff">{{
+                                            style="line-height: 18px; padding: 0px 15px; font-size: 9px; background: #f44a40; color: #fff; text-transform: uppercase">{{
                                             $item->status }}</span>
                                     </h6>
                                     @endif

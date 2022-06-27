@@ -11,20 +11,17 @@
                     <div class="row single-slide align-items-center d-flex">
                         <div class="col-lg-7 col-md-6">
                             <div class="banner-content">
-                                <h1>Bycicles New <br>Collection!</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et
-                                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                                <p>{!! $item->description !!}</p>
                                 <div class="add-bag d-flex align-items-center">
-                                    <a class="add-btn" href=""><span class="lnr lnr-arrow-right-circle"></span></a>
+                                    <a class="add-btn" href="{{ route('products') }}"><span
+                                            class="lnr lnr-arrow-right-circle"></span></a>
                                     <span class="add-text text-uppercase">View More</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-5">
                             <div class="banner-img">
-                                <img class="img-fluid" src="{{ url('frontend-assets/img/banner/banner-img1.png') }}"
-                                    alt="">
+                                <img class="img-fluid" src="{{ Storage::url('slider/'.$item->image) }}" alt="">
                             </div>
                         </div>
                     </div>
@@ -234,7 +231,12 @@
                         <div class="product-details">
                             <h6>{{ $item->name }}</h6>
                             <div class="price">
+                                @if ($item->status =='promo' && $item->discount !='Rp 0')
+                                <h6>{{ $item->discount }}</h6>
+                                <h6 class="l-through" style="text-decoration: line-through;">{{ $item->price }}</h6>
+                                @else
                                 <h6>{{ $item->price }}</h6>
+                                @endif
                                 @if ($item->status !='nett')
                                 <h6 class="l-through"
                                     style="color: #f44a40; position: absolute;  top: 8px; left: 5px; margin: auto;">
@@ -291,18 +293,23 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-20">
                         <div class="single-related-product d-flex">
                             <a href="{{ route('detail-produk.produkId',$item->slug) }}"><img
-                                    style="width: 75px; border-radius: 8px;"
+                                    style="width: 100px; border-radius: 8px;"
                                     src="{{ Storage::url('produk/'.$item->image) }}" alt=""></a>
                             <div class="desc">
                                 <a href="{{ route('detail-produk.produkId',$item->slug) }}" class="title">{{ $item->name
                                     }}</a>
                                 <div class="price">
+                                    @if ($item->status =='promo' && $item->discount !='Rp 0')
+                                    <h6>{{ $item->discount }}</h6>
+                                    <h6 class="l-through" style="text-decoration: line-through;">{{ $item->price }}</h6>
+                                    @else
                                     <h6>{{ $item->price }}</h6>
+                                    @endif
                                     @if ($item->status !='nett')
                                     <h6 class="l-through"
-                                        style="color: #f44a40; position: absolute; top: 0px; left: 8px; margin: auto;">
+                                        style="color: #f44a40; position: absolute; top: 6px; left: 8px; margin: auto;">
                                         <span class="genric-btn danger circle"
-                                            style="line-height: 12px; padding: 0px 8px; font-size: 7px; background: #f44a40; color: #fff">{{
+                                            style="line-height: 18px; padding: 0px 15px; font-size: 9px; background: #f44a40; color: #fff; text-transform: uppercase">{{
                                             $item->status }}</span>
                                     </h6>
                                     @endif

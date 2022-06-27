@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="blog_left_sidebar" style="padding-top: 50px; padding-bottom: 50px;">
                     <article class="row blog_item">
                         @if ($blogs->count() > 0)
@@ -53,7 +53,7 @@
                                     <a href="{{ route('blog-details.blogId',$item->slug) }}">
                                         <h2>{{Str::limit($item->title,55,'...')}}</h2>
                                     </a>
-                                    <p>{{Str::limit($item->content,120,'...')}}</p>
+                                    <p>{!! Str::limit($item->content,120,'...') !!}</p>
                                     <a href="{{ route('blog-details.blogId',$item->slug) }}"
                                         class="white_bg_btn">Selengkapnya...</a>
                                 </div>

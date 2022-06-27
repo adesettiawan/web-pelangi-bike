@@ -6,12 +6,10 @@
     <div class="container">
         <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
             <div class="col-first">
-                <h1>Product Category Page</h1>
+                <h1>Products Page</h1>
                 <nav class="d-flex align-items-center">
                     <a href="{{ route('beranda') }}">Home<span class="lnr lnr-arrow-right"></span></a>
-                    @foreach ($product_category as $item)
-                    <a href="{{ route('product-category.id',$item->slug) }}">{{ $item->name }}</a>
-                    @endforeach
+                    <a href="javascript:void(0)">Products</a>
                 </nav>
             </div>
         </div>
@@ -25,7 +23,8 @@
             <!-- Start Best Seller -->
             <section class="lattest-product-area pb-40 category-list" style="padding-top: 90px">
                 <div class="row">
-                    @foreach ($product_category_all as $item)
+                    @if ($products->count() > 0)
+                    @foreach ($products as $item)
                     <!-- single product -->
                     <div class="col-lg-3 col-md-6">
                         <div class="single-product">
@@ -69,13 +68,21 @@
                         </div>
                     </div>
                     @endforeach
+                    @else
+                    <div class="col-md-12">
+                        <div style="padding-top: 10px; padding-bottom: 90px">
+                            <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_ghfpce1h.json"
+                                background="transparent" speed="1" style="width: 100%; height: 300px;" loop autoplay>
+                            </lottie-player>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </section>
             <!-- End Best Seller -->
-
             <!-- Start pagination Bar -->
-            @if ($product_category_all->count() > 0)
-            {{$product_category_all->links()}}
+            @if ($products->count() > 0)
+            {{$products->links()}}
             @endif
             <!-- End pagination Bar -->
         </div>
@@ -83,7 +90,7 @@
 </div>
 
 <!-- Start related-product Area -->
-<section class="related-product-area section_gap">
+<section class="related-product-area section_gap_bottom">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-6 text-center">
@@ -141,5 +148,8 @@
 </section>
 <!-- End related-product Area -->
 
+@endsection
 
+@section('script')
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 @endsection

@@ -31,7 +31,7 @@
                     <div class="col-lg-12 col-md-12 blog_details">
                         <h2>{{$detailBlog->title}}</h2>
                         <p class="excert">
-                            {{$detailBlog->content}}
+                            {!! $detailBlog->content !!}
                         </p>
                     </div>
                 </div>
@@ -55,10 +55,10 @@
                     <aside class="single_sidebar_widget popular_post_widget">
                         <h3 class="widget_title" style="font-size: 16px">Best Seller Produk</h3>
                         @foreach ($products as $item)
-                        @if ($item->status =='best seller')
+                        @if ($item->status == 'best seller')
                         <div class="media post_item">
-                            <img style="max-width: 70px;max-height: 50px"
-                                src="{{ Storage::url('produk/'.$item->image) }}" alt="post">
+                            <img style="width: 70px;max-height: 50px" src="{{ Storage::url('produk/'.$item->image) }}"
+                                alt="post">
                             <div class="media-body">
                                 <a href="{{ route('detail-produk.produkId',$item->slug) }}">
                                     <h3>{{ $item->name }}</h3>
