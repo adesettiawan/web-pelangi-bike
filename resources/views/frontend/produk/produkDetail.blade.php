@@ -61,7 +61,7 @@
                         160) !!}</p>
                     <div class="card_area d-flex align-items-center">
                         <a class="primary-btn" target="_blank"
-                            href="https://api.whatsapp.com/send?phone={{ ($produk_detail && substr($produk_detail->phone,0,2) == '08') ? '62'.substr($produk_detail->phone,1) : $produk_detail->phone}}&text=Hallo%2C%20Saya%20ingin%20memesan%20sepeda%20merk%20*{{ $produk_detail->name }}*%20di%20Pelangi%20Bike.%20Untuk%20pemesanannya%20bagaimana%20ya%3F">Buy
+                            href="https://api.whatsapp.com/send?phone={{ ($produk_detail && substr($produk_detail->phone,0,2) == '08') ? '62'.substr($produk_detail->phone,1) : $produk_detail->phone}}&text=Hallo%2C%20Saya%20ingin%20memesan%20sepeda%20merk%20*{{ $produk_detail->name }}*%20di%20Pelangi%20Bike.%20Apakah%20barang%20tersedia%3F">Buy
                             Now</a>
                     </div>
                 </div>

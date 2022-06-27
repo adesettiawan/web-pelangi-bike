@@ -55,7 +55,7 @@
                                     </h6>
                                 </div>
                                 <div class="prd-bottom">
-                                    <a href="https://api.whatsapp.com/send?phone={{ ($item && substr($item->phone,0,2) == '08') ? '62'.substr($item->phone,1) : $item->phone}}&text=Hallo%2C%20Saya%20ingin%20memesan%20sepeda%20merk%20*{{ $item->name }}*%20di%20Pelangi%20Bike.%20Untuk%20pemesanannya%20bagaimana%20ya%3F"
+                                    <a href="https://api.whatsapp.com/send?phone={{ ($item && substr($item->phone,0,2) == '08') ? '62'.substr($item->phone,1) : $item->phone}}&text=Hallo%2C%20Saya%20ingin%20memesan%20sepeda%20merk%20*{{ $item->name }}*%20di%20Pelangi%20Bike.%20Apakah%20barang%20tersedia%3F"
                                         class="social-info" target="_blank">
                                         <span class="ti-comment-alt"></span>
                                         <p class="hover-text">Buy Now</p>
