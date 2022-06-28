@@ -12,7 +12,7 @@
     <link rel="stylesheet"
         href=" {{ asset('backend-assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend-assets/css/home.css') }}">
-    <link rel="shortcut icon" href="{{ asset('frontend-assets/img/logo3.png') }}">
+    <link rel="shortcut icon" href="{{ asset('frontend-assets/img/logo1.png') }}">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 
 </head>
