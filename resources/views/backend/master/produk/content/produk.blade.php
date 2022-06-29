@@ -37,7 +37,6 @@
                         <th class="text-center">Gambar</th>
                         <th class="text-center">Kategori</th>
                         <th class="text-center">Status</th>
-                        <th class="text-center">Deskripsi</th>
                         <th class="text-center">Diskon</th>
                         <th class="text-center">Ubah</th>
                         <th class="text-center">Hapus</th>
@@ -49,15 +48,12 @@
                         <tr>
                             <td class="text-center">{{ $no++ }}</td>
                             <td class="text-center">{{ $i->name }}</td>
-                            <td class="text-center">{{ $i->price}}</td>
+                            <td class="text-center">{{ $i->price }}</td>
                             <td class="text-center">{{ $i->discount }}</td>
                             <td class="text-center"><embed src="{{ asset('storage/produk/' . $i->image . '') }}"
                                     style="max-width:100px; max-height: 50px" /></td>
                             <td class="text-center">{{ $i->category_name }}</td>
                             <td class="text-center">{{ $i->status }}</td>
-                            <td class="text-left" style="white-space: pre-line; word-break: break-all">
-                                {!! $i->description !!}
-                            </td>
                             @if ($i->status == 'promo')
                                 <td class="text-center"><button type="button" data-toggle="modal"
                                         data-target="#produkmodal{{ $i->id }}"
