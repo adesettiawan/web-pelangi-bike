@@ -15,7 +15,8 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto">
-                        <li class="nav-item active"><a class="nav-link" href="{{ route('beranda') }}">Home</a></li>
+                        <li class="nav-item {{ Request::is('/') ? 'active' : '' }}"><a class="nav-link"
+                                href="{{ route('beranda') }}">Home</a></li>
                         <li class="nav-item submenu dropdown">
                             <a href="javascript:void(0)" class="nav-link dropdown-toggle" data-toggle="dropdown"
                                 role="button" aria-haspopup="true" aria-expanded="false">Sepeda</a>
@@ -27,16 +28,19 @@
 
                                 @foreach ($a as $b)
                                 @if ($c->where('category_id', $b->id)->count() > 0)
-                                <li class="nav-item"><a class="nav-link"
-                                        href="{{ route('product-category.id', $b->slug) }}">{{ $b->name }}</a>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('product-category.id', $b->slug) }}">{{ $b->name
+                                        }}</a>
                                 </li>
                                 @endif
                                 @endforeach
 
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('blogs') }}">Blogs</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('contacts') }}">Contact</a></li>
+                        <li class="nav-item {{ Request::is('blogs') ? 'active' : '' }}"><a class="nav-link"
+                                href="{{ route('blogs') }}">Blogs</a></li>
+                        <li class="nav-item {{ Request::is('contacts') ? 'active' : '' }}"><a class="nav-link"
+                                href="{{ route('contacts') }}">Contact</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item">

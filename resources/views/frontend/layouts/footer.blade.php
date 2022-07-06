@@ -13,7 +13,7 @@
                         Lampung, Lampung 35143.</p>
                     <p><i class="fa fa-whatsapp"></i>&nbsp; <a
                             href="https://api.whatsapp.com/send?phone=628129604786&text=Hallo%2C%20Saya%20ingin%20memesan%20sepeda%20di%20Pelangi%20Bike.%20Untuk%20pemesanannya%20bagaimana%20ya%3F"
-                            target="_blank" style="color: #777">088129604786</a></p>
+                            target="_blank" style="color: #777">08129604786</a></p>
                 </div>
             </div>
             <div class="col-lg-4  col-md-6 col-sm-6">
